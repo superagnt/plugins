@@ -1,0 +1,19 @@
+{
+  "name": "audience-radar",
+  "version": "0.1.0",
+  "description": "The Audience Radar blueprint: an agent that mines X for what your audience talks about on a schedule and writes cited content-idea reports. Skills-only pack \u2014 pulls the superagnt base plugin (MCP server + base skills) as a dependency.",
+  "author": {
+    "name": "superagnt",
+    "url": "https://superagnt.com"
+  },
+  "homepage": "https://superagnt.com/blueprints/audience-radar",
+  "repository": "https://github.com/superagnt/claude-plugins",
+  "license": "MIT",
+  "keywords": [
+    "blueprint",
+    "superagnt"
+  ],
+  "dependencies": [
+    "superagnt"
+  ]
+}

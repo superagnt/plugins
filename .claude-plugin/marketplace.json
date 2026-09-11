@@ -1,0 +1,55 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "superagnt",
+  "owner": {
+    "name": "superagnt",
+    "url": "https://superagnt.com"
+  },
+  "description": "superagnt_ \u2014 the agent value layer. The base plugin carries the MCP server (data sources, workspace Postgres, schedules, canvases) plus the base skill set; blueprint plugins add packaged workflows on top.",
+  "plugins": [
+    {
+      "name": "superagnt",
+      "source": "./plugins/superagnt",
+      "description": "The superagnt MCP server + base skills: external data in one call, a workspace Postgres, recurring automations, shareable canvases. OAuth on first tool call \u2014 the consent screen doubles as signup.",
+      "category": "productivity",
+      "keywords": [
+        "mcp",
+        "data",
+        "database",
+        "automation",
+        "lead-generation",
+        "scraping"
+      ]
+    },
+    {
+      "name": "audience-radar",
+      "source": "./plugins/audience-radar",
+      "description": "The Audience Radar blueprint: an agent that mines X for what your audience talks about on a schedule and writes cited content-idea reports. Skills-only pack \u2014 pulls the superagnt base plugin (MCP server + base skills) as a dependency.",
+      "category": "productivity",
+      "keywords": [
+        "blueprint",
+        "superagnt"
+      ]
+    },
+    {
+      "name": "competitor-mindshare",
+      "source": "./plugins/competitor-mindshare",
+      "description": "The Competitor Mindshare Monitor blueprint: identical daily X measurements per brand, logged to your workspace database with a shareable trend dashboard. Skills-only pack \u2014 pulls the superagnt base plugin as a dependency.",
+      "category": "productivity",
+      "keywords": [
+        "blueprint",
+        "superagnt"
+      ]
+    },
+    {
+      "name": "gtm-prospecting-desk",
+      "source": "./plugins/gtm-prospecting-desk",
+      "description": "The GTM Prospecting Desk blueprint: ICP-filtered company and people discovery, verified emails, scored rows and outreach drafts in one compounding pipeline table. Skills-only pack \u2014 pulls the superagnt base plugin as a dependency.",
+      "category": "productivity",
+      "keywords": [
+        "blueprint",
+        "superagnt"
+      ]
+    }
+  ]
+}
