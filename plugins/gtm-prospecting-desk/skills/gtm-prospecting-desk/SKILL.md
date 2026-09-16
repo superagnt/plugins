@@ -64,4 +64,4 @@ data job (see data-pipelines) rather than a longer session.
 - Respect disqualifiers in `icp_profile` absolutely — a disqualified company
   never re-enters the pipeline.
 
-<!-- skill_id: gtm-prospecting-desk · source: https://github.com/superagnt/claude-plugins -->
+<!-- skill_id: gtm-prospecting-desk · source: https://github.com/superagnt/plugins -->

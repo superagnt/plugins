@@ -42,4 +42,4 @@ runs compound instead of starting over.
 - Large lists (500+): move enrichment to a data job (data-pipelines skill)
   instead of looping calls in-session.
 
-<!-- skill_id: lead-generation · source: https://github.com/superagnt/claude-plugins -->
+<!-- skill_id: lead-generation · source: https://github.com/superagnt/plugins -->

@@ -36,4 +36,4 @@ opens for anyone — no account needed on the viewer's side.
   sold under the Database & Canvas module (free trial, `confirm_url` to the
   human on `requires_upgrade`).
 
-<!-- skill_id: canvas · source: https://github.com/superagnt/claude-plugins -->
+<!-- skill_id: canvas · source: https://github.com/superagnt/plugins -->

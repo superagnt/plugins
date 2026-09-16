@@ -8,7 +8,7 @@ canvases — plus the skills that teach the workflows.
 ## Install
 
 ```
-/plugin marketplace add superagnt/claude-plugins
+/plugin marketplace add superagnt/plugins
 /plugin install superagnt@superagnt
 ```
 

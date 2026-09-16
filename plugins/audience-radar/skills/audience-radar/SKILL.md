@@ -60,4 +60,4 @@ skip this and tell them to re-run the skill whenever.
   comes from a tool result or the table.
 - This skill reads X; it never posts, replies, or DMs.
 
-<!-- skill_id: audience-radar · source: https://github.com/superagnt/claude-plugins -->
+<!-- skill_id: audience-radar · source: https://github.com/superagnt/plugins -->

@@ -1,13 +1,13 @@
 {
   "name": "competitor-mindshare",
-  "version": "0.1.0",
-  "description": "The Competitor Mindshare Monitor blueprint: identical daily X measurements per brand, logged to your workspace database with a shareable trend dashboard. Skills-only pack \u2014 pulls the superagnt base plugin as a dependency.",
+  "version": "0.2.0",
+  "description": "The Competitor Mindshare Monitor blueprint: identical daily X measurements per brand, logged to your workspace database with a shareable trend dashboard. Skills-only pack — pulls the superagnt base plugin as a dependency.",
   "author": {
     "name": "superagnt",
     "url": "https://superagnt.com"
   },
   "homepage": "https://superagnt.com/blueprints/competitor-mindshare",
-  "repository": "https://github.com/superagnt/claude-plugins",
+  "repository": "https://github.com/superagnt/plugins",
   "license": "MIT",
   "keywords": [
     "blueprint",

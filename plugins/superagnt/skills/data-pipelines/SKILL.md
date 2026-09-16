@@ -35,4 +35,4 @@ State the item count and the per-item shape to the user BEFORE submitting a
 job over hundreds of rows — batch jobs spend credits at batch speed. Sample
 5 items in-session first to prove the recipe, then scale.
 
-<!-- skill_id: data-pipelines · source: https://github.com/superagnt/claude-plugins -->
+<!-- skill_id: data-pipelines · source: https://github.com/superagnt/plugins -->

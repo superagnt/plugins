@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "mcp": {
+    "superagnt": {
       "type": "http",
       "url": "https://mcp.superagnt.com/mcp"
     }

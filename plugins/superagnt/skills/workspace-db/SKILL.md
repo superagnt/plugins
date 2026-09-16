@@ -38,4 +38,4 @@ schedule, or a canvas must read belongs here.
   stable status strings are exactly what canvas widgets bind to (see the
   canvas skill).
 
-<!-- skill_id: workspace-db · source: https://github.com/superagnt/claude-plugins -->
+<!-- skill_id: workspace-db · source: https://github.com/superagnt/plugins -->

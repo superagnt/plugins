@@ -66,4 +66,4 @@ skill.
   column rather than mixing).
 - Every published number traces to rows in `mindshare_daily`.
 
-<!-- skill_id: competitor-mindshare · source: https://github.com/superagnt/claude-plugins -->
+<!-- skill_id: competitor-mindshare · source: https://github.com/superagnt/plugins -->

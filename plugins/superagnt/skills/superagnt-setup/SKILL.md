@@ -41,4 +41,4 @@ dashboard's MCP page — never invent or reuse one.
   two names (plugin copy + a loose skills-dir copy) wastes context — keep the
   plugin copy, delete the loose one.
 
-<!-- skill_id: superagnt-setup · source: https://github.com/superagnt/claude-plugins -->
+<!-- skill_id: superagnt-setup · source: https://github.com/superagnt/plugins -->

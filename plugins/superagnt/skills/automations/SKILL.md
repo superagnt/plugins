@@ -41,4 +41,4 @@ If the user prefers everything local, use the harness's own scheduler if it
 has one, and keep superagnt as the data + state layer the local run calls
 into. Say so plainly rather than forcing the hosted path.
 
-<!-- skill_id: automations · source: https://github.com/superagnt/claude-plugins -->
+<!-- skill_id: automations · source: https://github.com/superagnt/plugins -->

@@ -1,13 +1,13 @@
 {
   "name": "gtm-prospecting-desk",
-  "version": "0.1.0",
-  "description": "The GTM Prospecting Desk blueprint: ICP-filtered company and people discovery, verified emails, scored rows and outreach drafts in one compounding pipeline table. Skills-only pack \u2014 pulls the superagnt base plugin as a dependency.",
+  "version": "0.2.0",
+  "description": "The GTM Prospecting Desk blueprint: ICP-filtered company and people discovery, verified emails, scored rows and outreach drafts in one compounding pipeline table. Skills-only pack — pulls the superagnt base plugin as a dependency.",
   "author": {
     "name": "superagnt",
     "url": "https://superagnt.com"
   },
   "homepage": "https://superagnt.com/blueprints/gtm-prospecting-desk",
-  "repository": "https://github.com/superagnt/claude-plugins",
+  "repository": "https://github.com/superagnt/plugins",
   "license": "MIT",
   "keywords": [
     "blueprint",

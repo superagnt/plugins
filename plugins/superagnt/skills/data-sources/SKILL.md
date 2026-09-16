@@ -42,4 +42,4 @@ a signup credit balance, and `agnt_credits_balance` shows what's left.
 - Results worth keeping belong in the workspace database (see the
   workspace-db skill), not in chat scrollback.
 
-<!-- skill_id: data-sources · source: https://github.com/superagnt/claude-plugins -->
+<!-- skill_id: data-sources · source: https://github.com/superagnt/plugins -->

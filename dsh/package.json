@@ -1,0 +1,19 @@
+{
+  "name": "dsh-plugin-superagnt",
+  "version": "0.1.0",
+  "description": "superagnt for DeepSeek Harness: the MCP server (live social + web data, people/company enrichment, workspace Postgres, schedules, canvases) plus the base skill set, one install.",
+  "type": "module",
+  "main": "index.mjs",
+  "license": "MIT",
+  "keywords": [
+    "dsh-plugin",
+    "cordis-plugin",
+    "mcp",
+    "data-sources",
+    "workspace-database",
+    "automation",
+    "superagnt"
+  ],
+  "repository": "https://github.com/superagnt/plugins",
+  "homepage": "https://superagnt.com/agent-toolkit"
+}
