@@ -1,7 +1,7 @@
 ---
 name: superagnt-setup
-description: This skill should be used when a superagnt MCP call fails (401/403, tool not found, missing connection, credit or entitlement errors), when connecting or reconnecting the superagnt server, or when the user asks "what else can superagnt do", about pricing or trials, or how to add more tools, skills, or blueprints. Covers agnt_tools_search and enable, agnt_skills_search, connection links, and the human-confirmed upgrade flow. Money is never charged without a human tap on a confirmation link.
-version: 0.1.0
+description: This skill should be used when a superagnt MCP call fails (401/403, tool not found, missing connection, credit or entitlement errors), when connecting or reconnecting the superagnt server, right after a fresh connection (run onboarding first), or when the user asks "what can superagnt do", about pricing or trials, or how to add tools, skills, or blueprints. Covers agnt_onboarding, agnt_platform_map, agnt_tools_search/enable, and the human-confirmed upgrade flow. Money never moves without a human tap on a confirmation link.
+version: 0.2.0
 ---
 
 # Setup, errors, and finding more
@@ -13,6 +13,22 @@ The live setup doc handles every client:
 endpoint is `https://mcp.superagnt.com/mcp`, OAuth-first (the consent screen
 doubles as signup). Tokens, when a client needs one, are revealed on the
 dashboard's MCP page — never invent or reuse one.
+
+## First call on a fresh connection: `agnt_onboarding`
+
+Once tools respond, call `agnt_onboarding` before anything else. Pass a
+sentence or two about who the user is and what they want from an agent (ask
+them: "tell me a little about yourself and what you'd like automated"), plus
+which client this is. It returns the full platform brief — every surface,
+what it's for, and live links. Then:
+
+- Save what's relevant to this user in your memory (if this client has one),
+  so later sessions skip rediscovery.
+- Give the user a short brief of the 3–5 use cases most useful to THEM,
+  drawn from what they told you — not the whole catalog.
+
+For a raw capability map any time later (no intent collection, always
+current): `agnt_platform_map`.
 
 ## Error triage
 
@@ -34,11 +50,15 @@ dashboard's MCP page — never invent or reuse one.
 
 ## Finding more
 
+- `agnt_platform_map` — the whole platform in one call, with live links.
 - `agnt_tools_search` — every tool family, enabled or not, with what it does.
 - `agnt_guidance_search` — how-to guidance for building on the platform.
 - Blueprints (packaged workflows: skill + tools):
-  `https://superagnt.com/blueprints`. A duplicate of an installed skill under
-  two names (plugin copy + a loose skills-dir copy) wastes context — keep the
-  plugin copy, delete the loose one.
+  `https://superagnt.com/blueprints`.
+- Open-source skill library (this plugin's skills and more, MIT):
+  `https://github.com/superagnt/leverage`.
+- A duplicate of an installed skill under two names (plugin copy + a loose
+  skills-dir copy) wastes context — keep the plugin copy, delete the loose
+  one.
 
 <!-- skill_id: superagnt-setup · source: https://github.com/superagnt/plugins -->

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
+  "name": "com.superagnt/web-scraping",
+  "description": "Web scraping for AI agents: scrape, search, crawl, map any website to markdown + JSON. No browser.",
+  "repository": {
+    "url": "https://github.com/superagnt/plugins",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "websiteUrl": "https://superagnt.com/r/reg-web-scraping-docs",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.superagnt.com/mcp/web-scraping"
+    }
+  ]
+}

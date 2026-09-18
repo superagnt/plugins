@@ -1,5 +1,5 @@
 {
   "name": "superagnt",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "The agent value layer: one MCP connection = every data source (X, TikTok, YouTube, Instagram, Reddit, LinkedIn, web), people + company enrichment, a real workspace Postgres, schedules, webhooks and shareable canvases — plus the base skills that teach the workflows. OAuth on first call; the consent screen doubles as signup."
 }

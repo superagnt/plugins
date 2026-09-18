@@ -22,9 +22,9 @@ Each pulls the base plugin in as a dependency, so one line installs the whole
 stack:
 
 ```
-/plugin install audience-radar@superagnt        # content research, running night shifts
-/plugin install competitor-mindshare@superagnt  # daily share-of-voice measurement
-/plugin install gtm-prospecting-desk@superagnt  # ICP prospecting into a pipeline table
+/plugin install audience-radar@superagnt        # cited post ideas, every morning
+/plugin install competitor-mindshare@superagnt  # a daily competitor scoreboard on X
+/plugin install gtm-prospecting-desk@superagnt  # scored prospects + drafts, every morning
 ```
 
 Every blueprint has a page describing exactly what it does before you install
@@ -32,9 +32,10 @@ anything: https://superagnt.com/blueprints
 
 ## What's inside
 
-- `plugins/superagnt/` — the MCP server config plus seven base skills
-  (data-sources, lead-generation, workspace-db, automations, data-pipelines,
-  canvas, superagnt-setup) and the `/superagnt:connect` command.
+- `plugins/superagnt/` — the MCP server config plus eight base skills
+  (data-sources, lead-generation, workspace-db, task-agents, automations,
+  data-pipelines, canvas, superagnt-setup) and the `/superagnt:connect`
+  command.
 - `plugins/<blueprint>/` — one skill per blueprint. Read any skill before
   installing; they are plain markdown.
 

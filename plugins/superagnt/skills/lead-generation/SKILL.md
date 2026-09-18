@@ -1,7 +1,7 @@
 ---
 name: lead-generation
 description: This skill should be used when the user asks to "find leads", "build a lead list", "prospect", "find companies that…", "find people who…", "enrich these leads", or "find emails for this list", or wants an ICP-filtered outreach list. Covers the full superagnt workflow: company and people discovery, enrichment, scoring, storing results in the workspace database, and drafting outreach for human review. Sending is always human-approved.
-version: 0.1.0
+version: 0.2.0
 ---
 
 # Lead generation on superagnt
@@ -41,5 +41,12 @@ runs compound instead of starting over.
   the table (`agnt_db_select count`), not memory.
 - Large lists (500+): move enrichment to a data job (data-pipelines skill)
   instead of looping calls in-session.
+
+## More
+
+- A standing weekly refresh belongs on a task agent (task-agents skill), not
+  in repeated client sessions.
+- The packaged end-to-end version of this workflow:
+  https://superagnt.com/blueprints (Outbound Pipeline Engine)
 
 <!-- skill_id: lead-generation · source: https://github.com/superagnt/plugins -->

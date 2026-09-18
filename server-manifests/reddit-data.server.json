@@ -1,0 +1,17 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
+  "name": "com.superagnt/reddit-data",
+  "description": "Reddit data for AI agents: posts, comments, subreddits, search. Community + sentiment research.",
+  "repository": {
+    "url": "https://github.com/superagnt/plugins",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "websiteUrl": "https://superagnt.com/r/reg-reddit-data-docs",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.superagnt.com/mcp/reddit"
+    }
+  ]
+}

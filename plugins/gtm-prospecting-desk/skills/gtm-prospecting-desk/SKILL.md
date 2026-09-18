@@ -1,10 +1,10 @@
 ---
 name: gtm-prospecting-desk
-description: This skill should be used when the user wants to run the GTM Prospecting Desk blueprint, or asks to "build my prospecting pipeline", "run my outbound research", "keep a prospect table current", or wants recurring ICP-filtered company and people discovery with scored rows and outreach drafts. Runs on the superagnt MCP: first-party people/company data + LinkedIn + workspace database. Drafts only — sending is always the human's.
-version: 0.1.0
+description: This skill should be used when the user wants to run the Outbound Pipeline Engine blueprint, or asks to "build my prospecting pipeline", "run my outbound research", "keep a prospect table current", or wants recurring ICP-filtered company and people discovery with scored rows and outreach drafts. Runs on the superagnt MCP: first-party people/company data + LinkedIn + workspace database. Drafts only — sending is always the human's.
+version: 0.2.0
 ---
 
-# GTM Prospecting Desk
+# Outbound Pipeline Engine
 
 Outbound research end to end, compounding in one pipeline table. This skill
 builds on the base `lead-generation` skill's workflow — read that one for the
@@ -49,13 +49,16 @@ draft text, updated_at timestamptz)` — upsert key (person, company_domain).
 From the table: counts by status, the top 10 by fit with reasons, and where
 the drafts are. Numbers come from `agnt_db_select`, never memory.
 
-## Step 4 — offer the standing desk
+## Step 4 — offer the standing desk (a task agent)
 
 After one successful run: offer a scheduled refresh (weekly beats daily for
-prospecting). Deploy a runner agent with step 2 + `agnt_schedules_create`;
-cadence confirmed with the user, billed runs stated plainly, module trials
-via `confirm_url` on `requires_upgrade`. 500+ row enrichment belongs in a
-data job (see data-pipelines) rather than a longer session.
+prospecting) by building a task agent — recipe in the base `task-agents`
+skill. `agnt_agents_create` with a system prompt carrying step 2 verbatim
+(ICP table, pipeline table, status transitions), only the tools it uses,
+deploy, then `agnt_schedules_create`; cadence confirmed with the user,
+billed runs stated plainly, module trials via `confirm_url` on
+`requires_upgrade`. 500+ row enrichment belongs in a data job (see
+data-pipelines) rather than a longer session.
 
 ## Hard rules
 

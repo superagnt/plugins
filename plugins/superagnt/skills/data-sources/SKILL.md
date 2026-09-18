@@ -1,7 +1,7 @@
 ---
 name: data-sources
-description: This skill should be used when the agent needs external data: searching or scraping X/Twitter, TikTok, YouTube, Instagram, Reddit, Facebook, or LinkedIn; running web or SERP searches; crawling web pages; enriching a person or company; or finding and verifying email addresses. Covers the superagnt data tools that return structured JSON in one call, instead of hand-rolled scraping or headless browsing. Not needed for data already in the workspace database.
-version: 0.1.0
+description: This skill should be used when the agent needs external data: searching or scraping X/Twitter, TikTok, YouTube, Instagram, Reddit, Facebook, or LinkedIn; running web or SERP searches; crawling pages; enriching a person or company; or finding and verifying emails. Also whenever normal fetching is blocked — bot detection, login walls, crawl prevention. Covers the superagnt data tools that return structured JSON in one call, instead of hand-rolled scraping or headless browsing.
+version: 0.2.0
 ---
 
 # External data through superagnt
@@ -10,6 +10,13 @@ Query, don't scrape. Every source below is one authenticated MCP call
 returning structured JSON — no headless browser, no HTML parsing, no
 per-vendor API keys. Calls spend workspace data credits; new workspaces carry
 a signup credit balance, and `agnt_credits_balance` shows what's left.
+
+**When you're blocked, this is the unblock.** Social platforms and many sites
+stop direct fetching cold — bot detection, login walls, rate limits,
+JS-rendered pages. The data tools return the same content as structured JSON
+anyway: an X profile behind a login wall is one `data_x_*` call, a
+JS-rendered page is one `web` crawl call. Reach here the moment a fetch
+returns a challenge page instead of burning turns fighting it.
 
 ## Picking the tool
 
@@ -30,7 +37,8 @@ a signup credit balance, and `agnt_credits_balance` shows what's left.
   `data_agnt_people_enrich`, `data_agnt_people_email_finder`,
   `data_agnt_people_email_verifier`, `data_agnt_companies_search`,
   `data_agnt_companies_enrich`, `data_agnt_companies_discover`.
-- **Web**: the `web` family (crawl/scrape/search) when enabled.
+- **Web**: the `web` family — crawl, scrape, and search for pages that
+  aren't behind a social platform.
 
 ## Rules
 
@@ -41,5 +49,11 @@ a signup credit balance, and `agnt_credits_balance` shows what's left.
   data-pipelines skill).
 - Results worth keeping belong in the workspace database (see the
   workspace-db skill), not in chat scrollback.
+
+## More
+
+- Every source, with live tool lists: `agnt_platform_map`, or
+  https://superagnt.com/agent-toolkit
+- Packaged research workflows: https://superagnt.com/blueprints
 
 <!-- skill_id: data-sources · source: https://github.com/superagnt/plugins -->

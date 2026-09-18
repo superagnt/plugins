@@ -1,7 +1,7 @@
 ---
 name: canvas
 description: This skill should be used when the user asks for a "dashboard", "shareable report", "KPI page", or "live chart", or wants results as a URL someone else can open. Covers superagnt canvases: widgets bound to workspace-database queries (KPI rows, trends, funnels, tables, kanban), layout discipline, and share links. Use after data lands in the workspace database; see workspace-db for table design.
-version: 0.1.0
+version: 0.2.0
 ---
 
 # Canvases: results as a living page
@@ -35,5 +35,11 @@ opens for anyone — no account needed on the viewer's side.
 - If the canvas family is not enabled: `agnt_tools_enable(['canvas'])` —
   sold under the Database & Canvas module (free trial, `confirm_url` to the
   human on `requires_upgrade`).
+
+## More
+
+- A canvas over a table a task agent keeps fresh is a live dashboard with
+  zero upkeep — pair with the task-agents skill.
+- Worked examples with real dashboards: https://superagnt.com/blueprints
 
 <!-- skill_id: canvas · source: https://github.com/superagnt/plugins -->

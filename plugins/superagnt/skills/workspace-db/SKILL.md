@@ -1,7 +1,7 @@
 ---
 name: workspace-db
 description: This skill should be used when an agent workflow needs durable state: "save these results", "track status across runs", "remember this between sessions", building a pipeline, queue, or CRM-like table, or logging events over time. Covers table design in the superagnt workspace Postgres (agnt_db_*): schema patterns for pipelines, HITL queues, KPI events, and audit logs, plus canvas-ready column rules. Prefer it over local files or scratch JSON for anything a later run must read.
-version: 0.1.0
+version: 0.2.0
 ---
 
 # The workspace database
@@ -37,5 +37,13 @@ schedule, or a canvas must read belongs here.
 - Design for the canvas from day one: timestamptz + numeric measures +
   stable status strings are exactly what canvas widgets bind to (see the
   canvas skill).
+
+## More
+
+- CSVs and exports land as tables in one call: `agnt_db_load_csv` — then
+  process at row scale with the data-pipelines skill.
+- Tables are the hand-off surface to task agents and schedules (task-agents
+  skill): a hosted run has no chat history, it reads state from here.
+- Live platform reference: https://superagnt.com/agent-setup/prompt.md
 
 <!-- skill_id: workspace-db · source: https://github.com/superagnt/plugins -->

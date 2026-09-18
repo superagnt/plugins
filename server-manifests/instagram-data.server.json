@@ -1,0 +1,17 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
+  "name": "com.superagnt/instagram-data",
+  "description": "Instagram data for AI agents: profiles, posts, reels, followers. Influencer + brand research.",
+  "repository": {
+    "url": "https://github.com/superagnt/plugins",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "websiteUrl": "https://superagnt.com/r/reg-instagram-data-docs",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.superagnt.com/mcp/instagram"
+    }
+  ]
+}

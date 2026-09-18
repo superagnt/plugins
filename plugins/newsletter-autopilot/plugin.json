@@ -1,0 +1,5 @@
+{
+  "name": "newsletter-autopilot",
+  "version": "0.1.0",
+  "description": "The Newsletter Autopilot blueprint: an agent that researches your topics on X and the web all week and assembles a complete, cited issue draft on send day. Skills-only pack — pulls the superagnt base plugin as a dependency."
+}

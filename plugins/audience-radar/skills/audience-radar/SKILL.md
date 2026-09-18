@@ -1,10 +1,10 @@
 ---
 name: audience-radar
-description: This skill should be used when the user wants to run the Audience Radar blueprint, or asks to "find out what my audience talks about", "mine X for content ideas", "research what's working in my niche on X/Twitter", or wants a recurring content-research sweep with a cited ideas report. Runs on the superagnt MCP: X search + workspace database, with an optional nightly hosted run.
-version: 0.1.0
+description: This skill should be used when the user wants to run the Content Ideas Engine blueprint, or asks to "find out what my audience talks about", "mine X for content ideas", "research what's working in my niche on X/Twitter", or wants a recurring content-research sweep with a cited ideas report. Runs on the superagnt MCP: X search + workspace database, with an optional nightly hosted run.
+version: 0.2.0
 ---
 
-# Audience Radar
+# Content Ideas Engine
 
 Mine X for what the user's audience actually talks about; file the signal;
 write a cited ideas report. The recipe compounds: every sweep builds on the
@@ -45,14 +45,18 @@ repeated, 3–5 posts worth replying to today, and 3–5 post ideas — EVERY id
 cites the post that earned its place (author + link + likes). No cite, no
 idea. Keep the report under a page.
 
-## Step 4 — offer the night shift
+## Step 4 — offer the night shift (a task agent)
 
-Once one sweep has succeeded end to end, offer to make it nightly: deploy a
-small runner agent carrying steps 2–3 and `agnt_schedules_create` on it
-(cadence confirmed with the user first — every firing is a billed run). The
-`lifecycle` and `schedules` families are sold under modules with free trials;
-`requires_upgrade` → `confirm_url` → wait. If the user prefers local-only,
-skip this and tell them to re-run the skill whenever.
+Once one sweep has succeeded end to end, offer to make it nightly by
+building a task agent — the full recipe is the base `task-agents` skill.
+Short form: `agnt_agents_create` with a system prompt carrying steps 2–3
+verbatim (tables, queries, report shape), add ONLY the tools those steps use
+(`agnt_tools_search` for the config refs), `agnt_agents_deploy`, then
+`agnt_schedules_create` — cadence confirmed with the user first; every
+firing is a billed run. The `lifecycle` and `schedules` families are sold
+under modules with free trials; `requires_upgrade` → `confirm_url` → wait.
+If the user prefers local-only, skip this and tell them to re-run the skill
+whenever.
 
 ## Rules
 

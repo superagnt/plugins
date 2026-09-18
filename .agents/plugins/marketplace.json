@@ -22,7 +22,7 @@
     {
       "name": "audience-radar",
       "source": "./plugins/audience-radar",
-      "description": "The Audience Radar blueprint: an agent that mines X for what your audience talks about on a schedule and writes cited content-idea reports. Skills-only pack — pulls the superagnt base plugin (MCP server + base skills) as a dependency.",
+      "description": "The Content Ideas Engine blueprint: an agent that mines X for what your audience talks about on a schedule and writes cited content-idea reports. Skills-only pack — pulls the superagnt base plugin (MCP server + base skills) as a dependency.",
       "keywords": [
         "blueprint",
         "superagnt"
@@ -31,7 +31,7 @@
     {
       "name": "competitor-mindshare",
       "source": "./plugins/competitor-mindshare",
-      "description": "The Competitor Mindshare Monitor blueprint: identical daily X measurements per brand, logged to your workspace database with a shareable trend dashboard. Skills-only pack — pulls the superagnt base plugin as a dependency.",
+      "description": "The Competitor Tracker blueprint: identical daily X measurements per brand, logged to your workspace database with a shareable trend dashboard. Skills-only pack — pulls the superagnt base plugin as a dependency.",
       "keywords": [
         "blueprint",
         "superagnt"
@@ -40,7 +40,43 @@
     {
       "name": "gtm-prospecting-desk",
       "source": "./plugins/gtm-prospecting-desk",
-      "description": "The GTM Prospecting Desk blueprint: ICP-filtered company and people discovery, verified emails, scored rows and outreach drafts in one compounding pipeline table. Skills-only pack — pulls the superagnt base plugin as a dependency.",
+      "description": "The Outbound Pipeline Engine blueprint: ICP-filtered company and people discovery, verified emails, scored rows and outreach drafts in one compounding pipeline table. Skills-only pack — pulls the superagnt base plugin as a dependency.",
+      "keywords": [
+        "blueprint",
+        "superagnt"
+      ]
+    },
+    {
+      "name": "seo-page-factory",
+      "source": "./plugins/seo-page-factory",
+      "description": "The SEO Page Factory blueprint: an agent that finds the keywords your competitors rank for that you don't and drafts the full publish-ready page for each winnable one. Skills-only pack — pulls the superagnt base plugin as a dependency.",
+      "keywords": [
+        "blueprint",
+        "superagnt"
+      ]
+    },
+    {
+      "name": "video-multiplier",
+      "source": "./plugins/video-multiplier",
+      "description": "The Video Multiplier blueprint: an agent that turns one YouTube upload into the full package — chapters, title options, description, and a week of post drafts built from the transcript. Skills-only pack — pulls the superagnt base plugin as a dependency.",
+      "keywords": [
+        "blueprint",
+        "superagnt"
+      ]
+    },
+    {
+      "name": "shortform-script-engine",
+      "source": "./plugins/shortform-script-engine",
+      "description": "The Short-Form Script Engine blueprint: an agent that studies the top-performing videos in your niche each week and writes five ready-to-film scripts built on the hooks that keep winning. Skills-only pack — pulls the superagnt base plugin as a dependency.",
+      "keywords": [
+        "blueprint",
+        "superagnt"
+      ]
+    },
+    {
+      "name": "newsletter-autopilot",
+      "source": "./plugins/newsletter-autopilot",
+      "description": "The Newsletter Autopilot blueprint: an agent that researches your topics on X and the web all week and assembles a complete, cited issue draft on send day. Skills-only pack — pulls the superagnt base plugin as a dependency.",
       "keywords": [
         "blueprint",
         "superagnt"

@@ -1,0 +1,19 @@
+{
+  "name": "video-multiplier",
+  "version": "0.1.0",
+  "description": "The Video Multiplier blueprint: an agent that turns one YouTube upload into the full package — chapters, title options, description, and a week of post drafts built from the transcript. Skills-only pack — pulls the superagnt base plugin as a dependency.",
+  "author": {
+    "name": "superagnt",
+    "url": "https://superagnt.com"
+  },
+  "homepage": "https://superagnt.com/blueprints/video-multiplier",
+  "repository": "https://github.com/superagnt/plugins",
+  "license": "MIT",
+  "keywords": [
+    "blueprint",
+    "superagnt"
+  ],
+  "dependencies": [
+    "superagnt"
+  ]
+}
