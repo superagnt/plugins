@@ -22,6 +22,16 @@
       ]
     },
     {
+      "name": "warm-outbound-engine",
+      "source": "./plugins/warm-outbound-engine",
+      "description": "The LinkedIn Engagement Outbound blueprint: an agent that pulls the people reacting to and commenting on the posts your market engages with, scores them against your ICP before it spends anything on enrichment, and stages what fits into HeyReach, Instantly, AgentMail or your own Gmail. The campaign stays stopped until you start it. Skills-only pack, pulls the superagnt base plugin as a dependency.",
+      "category": "productivity",
+      "keywords": [
+        "blueprint",
+        "superagnt"
+      ]
+    },
+    {
       "name": "audience-radar",
       "source": "./plugins/audience-radar",
       "description": "The Content Ideas Engine blueprint: an agent that mines X for what your audience talks about on a schedule and writes cited content-idea reports. Skills-only pack — pulls the superagnt base plugin (MCP server + base skills) as a dependency.",
