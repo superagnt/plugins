@@ -15,20 +15,21 @@ canvases — plus the skills that teach the workflows.
 Auth is OAuth on the first tool call; the consent screen doubles as signup.
 No tokens, no config editing, no secrets in this repo.
 
-## Blueprints
+## Skills
 
-Blueprint plugins are packaged workflows: the skill plus the tools it needs.
+Skill plugins are packaged workflows: the skill plus the tools it needs.
 Each pulls the base plugin in as a dependency, so one line installs the whole
 stack:
 
 ```
+/plugin install super-seo@superagnt             # your whole SEO practice, measured and ranked
 /plugin install audience-radar@superagnt        # cited post ideas, every morning
 /plugin install competitor-mindshare@superagnt  # a daily competitor scoreboard on X
 /plugin install gtm-prospecting-desk@superagnt  # scored prospects + drafts, every morning
 ```
 
-Every blueprint has a page describing exactly what it does before you install
-anything: https://superagnt.com/blueprints
+Every skill has a page describing exactly what it does before you install
+anything: https://superagnt.com/skills
 
 ## What's inside
 
@@ -36,7 +37,7 @@ anything: https://superagnt.com/blueprints
   (data-sources, lead-generation, workspace-db, task-agents, automations,
   data-pipelines, canvas, superagnt-setup) and the `/superagnt:connect`
   command.
-- `plugins/<blueprint>/` — one skill per blueprint. Read any skill before
+- `plugins/<skill>/` — one skill per packaged workflow. Read any skill before
   installing; they are plain markdown.
 
 Two rules every skill follows: your agent can propose a paid module (each

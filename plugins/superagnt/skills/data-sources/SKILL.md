@@ -54,6 +54,6 @@ returns a challenge page instead of burning turns fighting it.
 
 - Every source, with live tool lists: `agnt_platform_map`, or
   https://superagnt.com/agent-toolkit
-- Packaged research workflows: https://superagnt.com/blueprints
+- Packaged research workflows: https://superagnt.com/skills
 
 <!-- skill_id: data-sources · source: https://github.com/superagnt/plugins -->

@@ -58,6 +58,6 @@ and how it was acked. Check there before assuming the upstream never fired.
 
 - Schedules (cron) moved to the task-agents skill — see its `schedules.md`.
 - Live setup + endpoint reference: https://superagnt.com/agent-setup/prompt.md
-- Packaged event-driven workflows: https://superagnt.com/blueprints
+- Packaged event-driven workflows: https://superagnt.com/skills
 
 <!-- skill_id: automations · source: https://github.com/superagnt/plugins -->

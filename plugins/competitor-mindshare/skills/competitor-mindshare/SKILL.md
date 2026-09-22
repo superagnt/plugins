@@ -1,6 +1,6 @@
 ---
 name: competitor-mindshare
-description: This skill should be used when the user wants to run the Competitor Tracker blueprint, or asks to "measure competitor mindshare", "track how much people talk about <brand> on X", "compare brand chatter", or wants a recurring share-of-voice measurement with a shareable dashboard. Runs on the superagnt MCP: X search + workspace database + canvas, with an optional daily hosted run.
+description: This skill should be used when the user wants to run the Competitor Tracker skill, or asks to "measure competitor mindshare", "track how much people talk about <brand> on X", "compare brand chatter", or wants a recurring share-of-voice measurement with a shareable dashboard. Runs on the superagnt MCP: X search + workspace database + canvas, with an optional daily hosted run.
 version: 0.2.0
 ---
 
@@ -16,7 +16,7 @@ filtering, and rates computed from the returned page's own timestamps.
 `agnt_tools_list_enabled`; if missing:
 `agnt_tools_enable({ "families": ["data:x", "database", "canvas_share"] })`.
 `requires_upgrade` → hand the `confirm_url` to the user, wait, re-run.
-(The competitor-mindshare blueprint endpoint pre-enables these.)
+(The competitor-mindshare skill endpoint pre-enables these.)
 
 ## Step 1 — name the brands (first run only)
 
@@ -53,7 +53,7 @@ own.
 
 ## Step 4 — offer the daily run (a task agent)
 
-Same pattern as every blueprint: once one measurement pass has succeeded,
+Same pattern as every packaged skill: once one measurement pass has succeeded,
 offer a daily run by building a task agent (recipe: the base `task-agents`
 skill) — `agnt_agents_create` with a system prompt carrying step 2 verbatim
 (brand table, query shape, insert), only the tools it uses, deploy, then

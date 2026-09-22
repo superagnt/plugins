@@ -1,6 +1,6 @@
 ---
 name: shortform-script-engine
-description: This skill should be used when the user wants to run the Short-Form Script Engine blueprint, or asks to "write short-form scripts from what's working in my niche", "give me TikTok scripts built on proven hooks", "what hooks are winning and write me the videos", or wants a weekly batch of ready-to-film scripts. Runs on the superagnt MCP: TikTok data + workspace database, with an optional weekly hosted run.
+description: This skill should be used when the user wants to run the Short-Form Script Engine skill, or asks to "write short-form scripts from what's working in my niche", "give me TikTok scripts built on proven hooks", "what hooks are winning and write me the videos", or wants a weekly batch of ready-to-film scripts. Runs on the superagnt MCP: TikTok data + workspace database, with an optional weekly hosted run.
 version: 0.1.0
 ---
 
@@ -17,7 +17,7 @@ The output is scripts to record, not research to read.
 missing, `agnt_tools_enable({ "families": ["data:tiktok", "database"] })`.
 A `requires_upgrade` result carries a `confirm_url` — give it to the
 user and wait, then re-run. (Connecting through the
-shortform-script-engine blueprint endpoint pre-enables these.)
+shortform-script-engine skill endpoint pre-enables these.)
 
 ## Step 1 — define the niche (first run only)
 

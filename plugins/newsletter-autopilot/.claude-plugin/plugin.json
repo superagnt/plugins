@@ -1,16 +1,16 @@
 {
   "name": "newsletter-autopilot",
-  "version": "0.1.0",
-  "description": "The Newsletter Autopilot blueprint: an agent that researches your topics on X and the web all week and assembles a complete, cited issue draft on send day. Skills-only pack — pulls the superagnt base plugin as a dependency.",
+  "version": "0.1.1",
+  "description": "The Newsletter Autopilot skill: an agent that researches your topics on X and the web all week and assembles a complete, cited issue draft on send day. Skills-only pack — pulls the superagnt base plugin as a dependency.",
   "author": {
     "name": "superagnt",
     "url": "https://superagnt.com"
   },
-  "homepage": "https://superagnt.com/blueprints/newsletter-autopilot",
+  "homepage": "https://superagnt.com/skills/newsletter-autopilot",
   "repository": "https://github.com/superagnt/plugins",
   "license": "MIT",
   "keywords": [
-    "blueprint",
+    "skill",
     "superagnt"
   ],
   "dependencies": [

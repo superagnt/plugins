@@ -1,5 +1,5 @@
 {
   "name": "warm-outbound-engine",
-  "version": "0.2.0",
-  "description": "The LinkedIn Engagement Outbound blueprint: an agent that pulls the people reacting to and commenting on the posts your market engages with, scores them against your ICP before it spends anything on enrichment, and stages what fits into HeyReach, Instantly, AgentMail or your own Gmail. The campaign stays stopped until you start it. Skills-only pack, pulls the superagnt base plugin as a dependency."
+  "version": "0.2.1",
+  "description": "The LinkedIn Engagement Outbound skill: an agent that pulls the people reacting to and commenting on the posts your market engages with, scores them against your ICP before it spends anything on enrichment, and stages what fits into HeyReach, Instantly, AgentMail or your own Gmail. The campaign stays stopped until you start it. Skills-only pack, pulls the superagnt base plugin as a dependency."
 }

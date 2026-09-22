@@ -1,6 +1,6 @@
 ---
 name: newsletter-autopilot
-description: This skill should be used when the user wants to run the Newsletter Autopilot blueprint, or asks to "research and draft my newsletter", "assemble this week's issue", "keep a research pile for my newsletter and write the draft", or wants a standing weekly loop that ends in a complete cited issue draft. Runs on the superagnt MCP: X + web data and the workspace database, with an optional nightly hosted run.
+description: This skill should be used when the user wants to run the Newsletter Autopilot skill, or asks to "research and draft my newsletter", "assemble this week's issue", "keep a research pile for my newsletter and write the draft", or wants a standing weekly loop that ends in a complete cited issue draft. Runs on the superagnt MCP: X + web data and the workspace database, with an optional nightly hosted run.
 version: 0.1.0
 ---
 
@@ -17,7 +17,7 @@ user edits and sends; sending is never the agent's.
 families are missing, `agnt_tools_enable({ "families": ["data:x",
 "data:web", "database"] })`. A `requires_upgrade` result carries a
 `confirm_url` — give it to the user and wait, then re-run. (Connecting
-through the newsletter-autopilot blueprint endpoint pre-enables these.)
+through the newsletter-autopilot skill endpoint pre-enables these.)
 
 ## Step 1 — learn the letter (first run only)
 

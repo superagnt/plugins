@@ -1,6 +1,6 @@
 ---
 name: video-multiplier
-description: This skill should be used when the user wants to run the Video Multiplier blueprint, or asks to "package my YouTube upload", "write chapters and a description for this video", "turn this video into posts", "repurpose my video into a thread / shorts / newsletter", or wants every new upload to come back as a full content package. Runs on the superagnt MCP: YouTube data + workspace database, with an optional per-upload hosted run.
+description: This skill should be used when the user wants to run the Video Multiplier skill, or asks to "package my YouTube upload", "write chapters and a description for this video", "turn this video into posts", "repurpose my video into a thread / shorts / newsletter", or wants every new upload to come back as a full content package. Runs on the superagnt MCP: YouTube data + workspace database, with an optional per-upload hosted run.
 version: 0.1.0
 ---
 
@@ -16,7 +16,7 @@ video becomes seven pieces. Publishing stays with the user.
 missing, `agnt_tools_enable({ "families": ["data:youtube", "database"] })`.
 A `requires_upgrade` result carries a `confirm_url` — give it to the
 user and wait, then re-run. (Connecting through the video-multiplier
-blueprint endpoint pre-enables these.)
+skill endpoint pre-enables these.)
 
 ## Step 1 — intake
 

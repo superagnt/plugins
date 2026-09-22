@@ -40,6 +40,6 @@ opens for anyone — no account needed on the viewer's side.
 
 - A canvas over a table a task agent keeps fresh is a live dashboard with
   zero upkeep — pair with the task-agents skill.
-- Worked examples with real dashboards: https://superagnt.com/blueprints
+- Worked examples with real dashboards: https://superagnt.com/skills
 
 <!-- skill_id: canvas · source: https://github.com/superagnt/plugins -->

@@ -1,6 +1,6 @@
 ---
 name: warm-outbound-engine
-description: This skill should be used when the user wants to run the LinkedIn Engagement Outbound blueprint, or asks to "scrape LinkedIn post engagers", "build outbound from people engaging with my market", "find warm leads on LinkedIn", "turn LinkedIn engagement into a sequence", or wants recurring engagement-sourced prospecting staged into HeyReach, Instantly, AgentMail or their own Gmail. Runs on the superagnt MCP: LinkedIn post + engager data, first-party enrichment, workspace database, and one sending lane of the user's choice. Stages campaigns stopped; starting a sequence is always the human's.
+description: This skill should be used when the user wants to run the LinkedIn Engagement Outbound skill, or asks to "scrape LinkedIn post engagers", "build outbound from people engaging with my market", "find warm leads on LinkedIn", "turn LinkedIn engagement into a sequence", or wants recurring engagement-sourced prospecting staged into HeyReach, Instantly, AgentMail or their own Gmail. Runs on the superagnt MCP: LinkedIn post + engager data, first-party enrichment, workspace database, and one sending lane of the user's choice. Stages campaigns stopped; starting a sequence is always the human's.
 version: 0.2.0
 ---
 
@@ -19,7 +19,7 @@ engagement source, the scoring gate, and the four sending lanes.
 first-party `data_agnt_*` people/company tools are always on). That is the
 whole first run — **do not enable a sending lane yet.** `requires_upgrade` →
 `confirm_url` to the user → wait → re-run. (The `warm-outbound-engine`
-blueprint endpoint pre-enables these two.)
+skill endpoint pre-enables these two.)
 
 ## Step 1 — the ICP, and the searches it implies (first run only)
 

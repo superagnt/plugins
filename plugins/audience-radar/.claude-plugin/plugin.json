@@ -1,16 +1,16 @@
 {
   "name": "audience-radar",
-  "version": "0.3.1",
-  "description": "The Content Ideas Engine blueprint: an agent that mines X for what your audience talks about on a schedule and writes cited content-idea reports. Skills-only pack — pulls the superagnt base plugin (MCP server + base skills) as a dependency.",
+  "version": "0.3.2",
+  "description": "The Content Ideas Engine skill: an agent that mines X for what your audience talks about on a schedule and writes cited content-idea reports. Skills-only pack — pulls the superagnt base plugin (MCP server + base skills) as a dependency.",
   "author": {
     "name": "superagnt",
     "url": "https://superagnt.com"
   },
-  "homepage": "https://superagnt.com/blueprints/audience-radar",
+  "homepage": "https://superagnt.com/skills/audience-radar",
   "repository": "https://github.com/superagnt/plugins",
   "license": "MIT",
   "keywords": [
-    "blueprint",
+    "skill",
     "superagnt"
   ],
   "dependencies": [

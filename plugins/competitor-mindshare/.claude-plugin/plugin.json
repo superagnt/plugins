@@ -1,16 +1,16 @@
 {
   "name": "competitor-mindshare",
-  "version": "0.3.1",
-  "description": "The Competitor Tracker blueprint: identical daily X measurements per brand, logged to your workspace database with a shareable trend dashboard. Skills-only pack — pulls the superagnt base plugin as a dependency.",
+  "version": "0.3.2",
+  "description": "The Competitor Tracker skill: identical daily X measurements per brand, logged to your workspace database with a shareable trend dashboard. Skills-only pack — pulls the superagnt base plugin as a dependency.",
   "author": {
     "name": "superagnt",
     "url": "https://superagnt.com"
   },
-  "homepage": "https://superagnt.com/blueprints/competitor-mindshare",
+  "homepage": "https://superagnt.com/skills/competitor-mindshare",
   "repository": "https://github.com/superagnt/plugins",
   "license": "MIT",
   "keywords": [
-    "blueprint",
+    "skill",
     "superagnt"
   ],
   "dependencies": [

@@ -1,6 +1,6 @@
 ---
 name: gtm-prospecting-desk
-description: This skill should be used when the user wants to run the Outbound Pipeline Engine blueprint, or asks to "build my prospecting pipeline", "run my outbound research", "keep a prospect table current", or wants recurring ICP-filtered company and people discovery with scored rows and outreach drafts. Runs on the superagnt MCP: first-party people/company data + LinkedIn + workspace database. Drafts only — sending is always the human's.
+description: This skill should be used when the user wants to run the Outbound Pipeline Engine skill, or asks to "build my prospecting pipeline", "run my outbound research", "keep a prospect table current", or wants recurring ICP-filtered company and people discovery with scored rows and outreach drafts. Runs on the superagnt MCP: first-party people/company data + LinkedIn + workspace database. Drafts only — sending is always the human's.
 version: 0.2.0
 ---
 
@@ -16,7 +16,7 @@ per-step tool detail; this one adds the standing-desk structure.
 `agnt_tools_enable({ "families": ["data:linkedin", "database"] })` (the
 first-party `data_agnt_*` people/company tools are always on).
 `requires_upgrade` → `confirm_url` to the user → wait → re-run. (The
-gtm-prospecting-desk blueprint endpoint pre-enables these.)
+gtm-prospecting-desk skill endpoint pre-enables these.)
 
 ## Step 1 — pin the ICP (first run only)
 

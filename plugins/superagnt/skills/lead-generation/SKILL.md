@@ -47,6 +47,6 @@ runs compound instead of starting over.
 - A standing weekly refresh belongs on a task agent (task-agents skill), not
   in repeated client sessions.
 - The packaged end-to-end version of this workflow:
-  https://superagnt.com/blueprints (Outbound Pipeline Engine)
+  https://superagnt.com/skills (Outbound Pipeline Engine)
 
 <!-- skill_id: lead-generation · source: https://github.com/superagnt/plugins -->

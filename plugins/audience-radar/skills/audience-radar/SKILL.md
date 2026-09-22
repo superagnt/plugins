@@ -1,6 +1,6 @@
 ---
 name: audience-radar
-description: This skill should be used when the user wants to run the Content Ideas Engine blueprint, or asks to "find out what my audience talks about", "mine X for content ideas", "research what's working in my niche on X/Twitter", or wants a recurring content-research sweep with a cited ideas report. Runs on the superagnt MCP: X search + workspace database, with an optional nightly hosted run.
+description: This skill should be used when the user wants to run the Content Ideas Engine skill, or asks to "find out what my audience talks about", "mine X for content ideas", "research what's working in my niche on X/Twitter", or wants a recurring content-research sweep with a cited ideas report. Runs on the superagnt MCP: X search + workspace database, with an optional nightly hosted run.
 version: 0.2.0
 ---
 
@@ -15,7 +15,7 @@ tables the last one left.
 `agnt_tools_list_enabled`; if `data:x` or `database` families are missing,
 `agnt_tools_enable({ "families": ["data:x", "database"] })`. A
 `requires_upgrade` result carries a `confirm_url` — give it to the user and
-wait, then re-run. (Connecting through the audience-radar blueprint endpoint
+wait, then re-run. (Connecting through the audience-radar skill endpoint
 pre-enables these.)
 
 ## Step 1 — define the radar (first run only)

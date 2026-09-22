@@ -1,0 +1,20 @@
+{
+  "name": "super-seo",
+  "version": "0.1.0",
+  "description": "The Super SEO skill: a full SEO operating system. Search Console as ground truth, every candidate action scored on one scale and worked top-down: page drafts, refreshes, on-page fixes, link pitches, indexing and AI-answer visibility, backed by a bundled practitioner-research corpus. Skills-only pack — pulls the superagnt base plugin as a dependency.",
+  "author": {
+    "name": "superagnt",
+    "url": "https://superagnt.com"
+  },
+  "homepage": "https://superagnt.com/skills/super-seo",
+  "repository": "https://github.com/superagnt/plugins",
+  "license": "MIT",
+  "keywords": [
+    "skill",
+    "seo",
+    "superagnt"
+  ],
+  "dependencies": [
+    "superagnt"
+  ]
+}

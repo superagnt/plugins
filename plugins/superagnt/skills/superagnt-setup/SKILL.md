@@ -1,6 +1,6 @@
 ---
 name: superagnt-setup
-description: This skill should be used when a superagnt MCP call fails (401/403, tool not found, missing connection, credit or entitlement errors), when connecting or reconnecting the superagnt server, right after a fresh connection (run onboarding first), or when the user asks "what can superagnt do", about pricing or trials, or how to add tools, skills, or blueprints. Covers agnt_onboarding, agnt_platform_map, agnt_tools_search/enable, and the human-confirmed upgrade flow. Money never moves without a human tap on a confirmation link.
+description: This skill should be used when a superagnt MCP call fails (401/403, tool not found, missing connection, credit or entitlement errors), when connecting or reconnecting the superagnt server, right after a fresh connection (run onboarding first), or when the user asks "what can superagnt do", about pricing or trials, or how to add tools or skills. Covers agnt_onboarding, agnt_platform_map, agnt_tools_search/enable, and the human-confirmed upgrade flow. Money never moves without a human tap on a confirmation link.
 version: 0.2.0
 ---
 
@@ -53,8 +53,8 @@ current): `agnt_platform_map`.
 - `agnt_platform_map` — the whole platform in one call, with live links.
 - `agnt_tools_search` — every tool family, enabled or not, with what it does.
 - `agnt_guidance_search` — how-to guidance for building on the platform.
-- Blueprints (packaged workflows: skill + tools):
-  `https://superagnt.com/blueprints`.
+- Packaged skills (a skill plus the tools it needs):
+  `https://superagnt.com/skills`.
 - Open-source skill library (this plugin's skills and more, MIT):
   `https://github.com/superagnt/leverage`.
 - A duplicate of an installed skill under two names (plugin copy + a loose
