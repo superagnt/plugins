@@ -1,10 +1,10 @@
 ---
 name: shortform-script-engine
-description: This skill should be used when the user wants to run the Short-Form Script Engine skill, or asks to "write short-form scripts from what's working in my niche", "give me TikTok scripts built on proven hooks", "what hooks are winning and write me the videos", or wants a weekly batch of ready-to-film scripts. Runs on the superagnt MCP: TikTok data + workspace database, with an optional weekly hosted run.
+description: This skill should be used when the user wants to run the Hook Lab skill, or asks to "write short-form scripts from what's working in my niche", "give me TikTok scripts built on proven hooks", "what hooks are winning and write me the videos", or wants a weekly batch of ready-to-film scripts. Runs on the superagnt MCP: TikTok data + workspace database, with an optional weekly hosted run.
 version: 0.1.0
 ---
 
-# Short-Form Script Engine
+# Hook Lab
 
 Study the top-performing short-form videos in the user's niche, rank
 the hook patterns that keep winning, and WRITE five ready-to-film

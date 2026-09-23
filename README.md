@@ -50,7 +50,7 @@ deliverable.
 Not on Claude Code? The same setup is one paste in any MCP client:
 
 ```
-Fetch and execute the appropriate instructions to set me up for superagnt_ from https://superagnt.com/agent-setup/prompt.md
+Install superagnt for me. It's the superagnt plugin from the github.com/superagnt/plugins marketplace, and it connects the superagnt MCP server (I'll sign in through my browser). The setup guide for each kind of agent is at https://superagnt.com/agent-setup/prompt.md
 ```
 
 ## About this repo

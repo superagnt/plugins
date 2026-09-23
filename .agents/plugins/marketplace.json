@@ -22,7 +22,7 @@
     {
       "name": "warm-outbound-engine",
       "source": "./plugins/warm-outbound-engine",
-      "description": "The LinkedIn Engagement Outbound skill: an agent that pulls the people reacting to and commenting on the posts your market engages with, scores them against your ICP before it spends anything on enrichment, and stages what fits into HeyReach, Instantly, AgentMail or your own Gmail. The campaign stays stopped until you start it. Skills-only pack, pulls the superagnt base plugin as a dependency.",
+      "description": "The LinkedIn Warm Outbound skill: an agent that pulls the people reacting to and commenting on the posts your market engages with, scores them against your ICP before it pays for a single email lookup, writes each first message from what that person engaged with, and stages what fits into HeyReach, Instantly, AgentMail or your own Gmail. The campaign stays stopped until you start it. Ships a cold outreach playbook, a free-resource first touch, webhook auto-replies and a guide to running it on autopilot. Skills-only pack, pulls the superagnt base plugin as a dependency.",
       "keywords": [
         "skill",
         "superagnt"
@@ -77,7 +77,7 @@
     {
       "name": "shortform-script-engine",
       "source": "./plugins/shortform-script-engine",
-      "description": "The Short-Form Script Engine skill: an agent that studies the top-performing videos in your niche each week and writes five ready-to-film scripts built on the hooks that keep winning. Skills-only pack — pulls the superagnt base plugin as a dependency.",
+      "description": "The Hook Lab skill: an agent that studies the top-performing videos in your niche each week and writes five ready-to-film scripts built on the hooks that keep winning. Skills-only pack — pulls the superagnt base plugin as a dependency.",
       "keywords": [
         "skill",
         "superagnt"

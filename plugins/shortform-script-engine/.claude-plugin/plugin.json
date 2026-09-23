@@ -1,7 +1,7 @@
 {
   "name": "shortform-script-engine",
-  "version": "0.1.1",
-  "description": "The Short-Form Script Engine skill: an agent that studies the top-performing videos in your niche each week and writes five ready-to-film scripts built on the hooks that keep winning. Skills-only pack — pulls the superagnt base plugin as a dependency.",
+  "version": "0.1.2",
+  "description": "The Hook Lab skill: an agent that studies the top-performing videos in your niche each week and writes five ready-to-film scripts built on the hooks that keep winning. Skills-only pack — pulls the superagnt base plugin as a dependency.",
   "author": {
     "name": "superagnt",
     "url": "https://superagnt.com"
