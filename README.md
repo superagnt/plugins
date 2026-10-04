@@ -40,9 +40,9 @@ anything: https://superagnt.com/skills
 - `plugins/<skill>/` — one skill per packaged workflow. Read any skill before
   installing; they are plain markdown.
 
-Two rules every skill follows: your agent can propose a paid module (each
-has a free trial) but money only ever moves on a confirmation page you open
-yourself, and nothing sends outbound (email, posts, DMs) — drafts are the
+Two rules every skill follows: your agent can propose a plan upgrade when a
+limit is reached, but money only ever moves on a confirmation page you open
+yourself, and nothing sends outbound (email, posts, DMs). Drafts are the
 deliverable.
 
 ## Other harnesses

@@ -9,8 +9,10 @@ version: 0.2.0
 Every superagnt workspace can carry a real Postgres the agent owns:
 `agnt_db_list_tables`, `agnt_db_execute_sql`, `agnt_db_apply_migration`,
 `agnt_db_insert` / `select` / `update` / `upsert` / `delete`,
-`agnt_db_load_csv`. If the tools are missing, enable the `database` family
-(`agnt_tools_enable`); if the database is not yet provisioned,
+`agnt_db_load_csv`. On a grouped server these are actions of `agnt_db_read`,
+`agnt_db_write` and `agnt_db_sql` (see the end of this file). If the tools are
+missing under both names, enable the `database` family (`agnt_tools_enable`);
+if the database is not yet provisioned,
 `agnt_db_status` says so and provisioning is automatic on first use.
 
 Local files die with the session. Anything a later run, another agent, a
@@ -37,6 +39,20 @@ schedule, or a canvas must read belongs here.
 - Design for the canvas from day one: timestamptz + numeric measures +
   stable status strings are exactly what canvas widgets bind to (see the
   canvas skill).
+
+## Tool names on grouped servers
+
+This skill writes flat (per-operation) tool names. New superagnt servers list
+grouped tools instead: one tool per resource with an `action` argument. Flat
+names still resolve there but are not listed, so call the grouped form:
+
+- `agnt_db_status` / `agnt_db_list_tables` / `agnt_db_select` → `agnt_db_read`, action `status` / `list_tables` / `select`
+- `agnt_db_insert` / `agnt_db_upsert` / `agnt_db_update` / `agnt_db_load_csv` → `agnt_db_write`, action `insert` / `upsert` / `update` / `load_csv`
+- `agnt_db_execute_sql` / `agnt_db_apply_migration` → `agnt_db_sql`, action `execute_sql` / `apply_migration`
+- `agnt_db_delete` keeps its name on both surfaces
+
+`agnt_tools_enable` is `agnt_tools_write`, action `enable`, on a grouped
+server. `agnt_tools_search` and `agnt_tools_list_enabled` keep their names.
 
 ## More
 

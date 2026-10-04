@@ -18,6 +18,28 @@ first-party `data_agnt_*` people/company tools are always on).
 `requires_upgrade` → `confirm_url` to the user → wait → re-run. (The
 gtm-prospecting-desk skill endpoint pre-enables these.)
 
+## Tool names on grouped servers
+
+This skill writes flat (per-operation) tool names. New superagnt servers list
+grouped tools instead: one tool per resource with an `action` argument. Flat
+names still resolve there but are not listed, so call the grouped form:
+
+- `data_agnt_companies_search` / `data_agnt_companies_discover` → `data_agnt_companies`, action `search` / `discover`
+- `data_agnt_people_search` / `data_agnt_people_enrich` → `data_agnt_people`, action `search` / `enrich`
+- `data_agnt_people_email_finder` / `data_agnt_people_email_verifier` → `data_agnt_contacts`, action `find_email` / `verify_email`
+- `data_linkedin_*` profile reads → `data_linkedin_profiles` (e.g. action `profile_by_url`)
+- `agnt_db_insert` / `agnt_db_upsert` → `agnt_db_write`, action `insert` / `upsert`
+- `agnt_db_select` → `agnt_db_read`, action `select`
+- `agnt_agents_create` → `agnt_agents_write`, action `create`
+- `agnt_schedules_create` → `agnt_schedules_write`, action `create`
+- `agnt_tools_enable` → `agnt_tools_write`, action `enable`
+
+On a grouped server every data source is already on, so skip the `data:*`
+part of Step 0 (enable any other family with `agnt_tools_write`, action
+`enable`). Grouped data calls return a compact markdown view: pass
+`response_format: "json"` for every view field, or `"raw"` for the full
+payload, when a step needs a field the table leaves out.
+
 ## Step 1 — pin the ICP (first run only)
 
 Company filters (size, industry, geography, signals) + buyer titles + any
@@ -56,9 +78,9 @@ prospecting) by building a task agent — recipe in the base `task-agents`
 skill. `agnt_agents_create` with a system prompt carrying step 2 verbatim
 (ICP table, pipeline table, status transitions), only the tools it uses,
 deploy, then `agnt_schedules_create`; cadence confirmed with the user,
-billed runs stated plainly, module trials via `confirm_url` on
-`requires_upgrade`. 500+ row enrichment belongs in a data job (see
-data-pipelines) rather than a longer session.
+billed runs stated plainly, and a plan limit's `requires_upgrade` handed to
+the user as its `confirm_url`. 500+ row enrichment belongs in a data job
+(see data-pipelines) rather than a longer session.
 
 ## Hard rules
 

@@ -19,10 +19,11 @@ task has run in-session more than twice and will keep recurring.
    not succeeded once end to end.
 2. **State in the workspace database** (workspace-db skill). A hosted run has
    no chat history — everything it needs to resume must be in a table.
-3. **Enable the families.** `agnt_tools_enable(['lifecycle'])` for
-   create/deploy; `['schedules']` for cron. Sold under the Agent Runtime and
-   Automation modules (free trials): a `requires_upgrade` result carries a
-   `confirm_url` — hand it to the human and wait; not an error.
+3. **Enable the families.** `agnt_tools_enable({ families: ['lifecycle'] })`
+   for create/deploy; `['schedules']` for cron. Both are on every plan. Plans
+   cap deployed agents and enabled schedules, so a `requires_upgrade` result
+   carries a `confirm_url` naming the next plan: hand it to the human and
+   wait; not an error.
 4. **Create narrow.** `agnt_agents_create` with a name and a system prompt
    that is the full job: the task, the tables it reads/writes, what done
    looks like, what to do on failure. Then `agnt_agents_update_config` with
@@ -30,7 +31,9 @@ task has run in-session more than twice and will keep recurring.
    `agnt_tools_search`, and only the tools the job needs. A task agent with
    every tool is a liability, not a convenience.
 5. **Deploy.** `agnt_agents_deploy` flips it live and it starts billing from
-   its first session — confirm with the human before calling.
+   its first session, so confirm with the human before calling. Runs spend
+   AI credits, which the builder plans and the trial don't include: the human
+   tops them up in the dashboard.
 6. **Wire the trigger.** An event exists → bind a webhook to the agent
    (automations skill). Purely time-based → create a schedule
    ([schedules.md](schedules.md)). On-demand from another agent or session →
@@ -49,6 +52,21 @@ task has run in-session more than twice and will keep recurring.
   `agnt_agents_dispatch` or agent-to-agent webhooks.
 - Misbehaving agent: `agnt_agents_set_enabled(false)` stops triggers
   reversibly — prefer it over archiving.
+
+## Tool names on grouped servers
+
+This skill writes flat (per-operation) tool names. New superagnt servers list
+grouped tools instead: one tool per resource with an `action` argument. Flat
+names still resolve there but are not listed, so call the grouped form:
+
+- `agnt_agents_create` / `agnt_agents_update_config` / `agnt_agents_deploy` / `agnt_agents_set_enabled` → `agnt_agents_write`, action `create` / `update_config` / `deploy` / `set_enabled`
+- `agnt_agents_dispatch` / `agnt_agents_session_start` / `agnt_agents_session_send` → `agnt_agents_run`, action `dispatch` / `session_start` / `session_send`
+- `agnt_agents_session_poll` → `agnt_agents_read`, action `session_poll`
+- `agnt_observability_read_session` → `agnt_observability_read`, action `read_session`
+- `agnt_schedules_create` / `agnt_schedules_update` → `agnt_schedules_write`, action `create` / `update`
+
+`agnt_tools_enable` is `agnt_tools_write`, action `enable`, on a grouped
+server. `agnt_tools_search` and `agnt_tools_list_enabled` keep their names.
 
 ## More
 

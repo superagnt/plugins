@@ -82,6 +82,28 @@ they do. Degraded is a labelled state, never a blocker: every panel,
 board and report produced without GSC marks the affected figures
 "third-party estimate".
 
+## Tool names on grouped servers
+
+This skill writes flat (per-operation) tool names. New superagnt servers list
+grouped tools instead: one tool per resource with an `action` argument. Flat
+names still resolve there but are not listed, so call the grouped form:
+
+- `data_seo_google_search` / `data_seo_google_ai_mode_search` / `data_seo_search_intent` → `data_seo_serp`, action `google` / `ai_mode` / `intent`
+- `data_seo_keyword_ideas` / `data_seo_keyword_overview` / `data_seo_ranked_keywords` / `data_seo_keyword_gap` → `data_seo_keywords`, action `ideas` / `overview` / `ranked` / `gap`
+- `data_seo_domain_overview` / `data_seo_competitors` / `data_seo_ai_visibility` / `data_seo_page_audit` → `data_seo_domains`, action `overview` / `competitors` / `ai_visibility` / `page_audit`
+- `data_seo_backlinks_summary` / `data_seo_referring_domains` / `data_seo_backlink_gap` → `data_seo_backlinks`, action `summary` / `referring_domains` / `gap`
+- `data_web_scrape` keeps its name on both surfaces
+- `agnt_db_apply_migration` → `agnt_db_sql`, action `apply_migration`
+- `agnt_agents_create` / `agnt_agents_deploy` → `agnt_agents_write`, action `create` / `deploy`
+- `agnt_schedules_create` → `agnt_schedules_write`, action `create`
+- `agnt_tools_enable` → `agnt_tools_write`, action `enable`
+
+On a grouped server every data source is already on, so skip the `data:*`
+part of Step 0 (enable any other family with `agnt_tools_write`, action
+`enable`). Grouped data calls return a compact markdown view: pass
+`response_format: "json"` for every view field, or `"raw"` for the full
+payload, when a step needs a field the table leaves out.
+
 ## Step 1 — the baseline (first run only)
 
 Ask for the user's domain, 2-3 competitor domains, and what they sell
@@ -245,8 +267,8 @@ prompt carrying Steps 2-4 verbatim (tables, scoring scale, caps), add
 ONLY the tools those steps use including the Search Console connection
 tools, `agnt_agents_deploy`, then `agnt_schedules_create` — cadence
 confirmed with the user first; every firing is a billed run. The
-`lifecycle` and `schedules` families are sold under modules with free
-trials; `requires_upgrade` → `confirm_url` → wait. If the user prefers
+`lifecycle` and `schedules` families are on every plan, and plans cap agents
+and schedules; `requires_upgrade` → `confirm_url` → wait. If the user prefers
 local-only, skip this and tell them to re-run the skill whenever.
 
 ## The grey zone

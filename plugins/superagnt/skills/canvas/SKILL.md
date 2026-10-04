@@ -32,9 +32,27 @@ opens for anyone — no account needed on the viewer's side.
   accent.
 - Time widgets need `event_at`/`created_at` timestamptz columns; funnels and
   kanbans bind to stable status strings — schema rules in workspace-db.
-- If the canvas family is not enabled: `agnt_tools_enable(['canvas'])` —
-  sold under the Database & Canvas module (free trial, `confirm_url` to the
-  human on `requires_upgrade`).
+- The canvas tools are missing only when neither the flat
+  `agnt_canvas_put_widget` nor the grouped `agnt_canvas_write` (action
+  `put_widget`) is listed. Then enable the family:
+  `agnt_tools_enable({ families: ['canvas'] })`, or on a grouped server
+  `agnt_tools_write` with `action: "enable"` and the same `families`.
+  Canvases are on every plan and count against no limit; what the plan caps
+  is the workspace database behind them (tables, rows, storage).
+
+## Tool names on grouped servers
+
+New servers list one tool per family with an `action` argument. The flat
+names above map to:
+
+| Flat | Grouped tool, action |
+|---|---|
+| `agnt_canvas_get`, `_introspect_schema`, `_preview_query`, `_chart_render`, `_snapshot`, `_share_list` | `agnt_canvas_read`: `get`, `introspect_schema`, `preview_query`, `chart_render`, `snapshot`, `share_list` |
+| `agnt_canvas_put_widget`, `_update_widget`, `_set_layout`, `_share_create` | `agnt_canvas_write`: `put_widget`, `update_widget`, `set_layout`, `share_create` |
+| `agnt_canvas_remove_widget`, `_share_revoke` | `agnt_canvas_remove`: `remove_widget`, `share_revoke` |
+
+Flat names still resolve on a grouped server but are not listed, so most
+clients will not let you call them: use the grouped tool.
 
 ## More
 

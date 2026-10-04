@@ -18,6 +18,26 @@ tables the last one left.
 wait, then re-run. (Connecting through the audience-radar skill endpoint
 pre-enables these.)
 
+## Tool names on grouped servers
+
+This skill writes flat (per-operation) tool names. New superagnt servers list
+grouped tools instead: one tool per resource with an `action` argument. Flat
+names still resolve there but are not listed, so call the grouped form:
+
+- `data_x_search_get_search_search` → `data_x_discover`, action `search`
+- `agnt_db_insert` / `agnt_db_upsert` → `agnt_db_write`, action `insert` / `upsert`
+- `agnt_db_select` → `agnt_db_read`, action `select`
+- `agnt_db_apply_migration` → `agnt_db_sql`, action `apply_migration`
+- `agnt_agents_create` / `agnt_agents_deploy` → `agnt_agents_write`, action `create` / `deploy`
+- `agnt_schedules_create` → `agnt_schedules_write`, action `create`
+- `agnt_tools_enable` → `agnt_tools_write`, action `enable`
+
+On a grouped server every data source is already on, so skip the `data:*`
+part of Step 0 (enable any other family with `agnt_tools_write`, action
+`enable`). Grouped data calls return a compact markdown view: pass
+`response_format: "json"` for every view field, or `"raw"` for the full
+payload, when a step needs a field the table leaves out.
+
 ## Step 1 — define the radar (first run only)
 
 Ask the user for their niche, audience, and 3–5 accounts they rate. Derive
@@ -53,8 +73,9 @@ Short form: `agnt_agents_create` with a system prompt carrying steps 2–3
 verbatim (tables, queries, report shape), add ONLY the tools those steps use
 (`agnt_tools_search` for the config refs), `agnt_agents_deploy`, then
 `agnt_schedules_create` — cadence confirmed with the user first; every
-firing is a billed run. The `lifecycle` and `schedules` families are sold
-under modules with free trials; `requires_upgrade` → `confirm_url` → wait.
+firing is a billed run. The `lifecycle` and `schedules` families are on
+every plan, and plans cap agents and schedules; `requires_upgrade` →
+`confirm_url` → wait.
 If the user prefers local-only, skip this and tell them to re-run the skill
 whenever.
 

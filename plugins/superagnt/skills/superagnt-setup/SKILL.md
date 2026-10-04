@@ -1,6 +1,6 @@
 ---
 name: superagnt-setup
-description: This skill should be used when a superagnt MCP call fails (401/403, tool not found, missing connection, credit or entitlement errors), when connecting or reconnecting the superagnt server, right after a fresh connection (run onboarding first), or when the user asks "what can superagnt do", about pricing or trials, or how to add tools or skills. Covers agnt_onboarding, agnt_platform_map, agnt_tools_search/enable, and the human-confirmed upgrade flow. Money never moves without a human tap on a confirmation link.
+description: This skill should be used when a superagnt MCP call fails (401/403, tool not found, missing connection, credit, plan limit or trial errors), when connecting or reconnecting the superagnt server, right after a fresh connection (run onboarding first), or when the user asks "what can superagnt do", about pricing or trials, or how to add tools or skills. Covers agnt_onboarding, agnt_platform_map, agnt_tools_search/enable, and the human-confirmed upgrade flow. Money never moves without a human tap on a confirmation link.
 version: 0.2.0
 ---
 
@@ -30,23 +30,54 @@ what it's for, and live links. Then:
 For a raw capability map any time later (no intent collection, always
 current): `agnt_platform_map`.
 
+## Tool names: flat and grouped servers
+
+A server lists its tools one of two ways, fixed when it was created. New
+servers (including every new workspace's default server) are **grouped**:
+one tool per family and risk level with an `action` argument, e.g.
+`agnt_db_write` with `action: "insert"`, `agnt_agents_write` with
+`action: "create"`, `data_linkedin_posts` with `action: "reactions"`. Servers
+created before grouped tools shipped are **flat**: one tool per operation (`agnt_db_insert`, `agnt_agents_create`,
+`data_linkedin_get_post_reactions`). These skills write flat names; on a
+grouped server call the grouped tool whose description lists that name as an
+action (each action line reads `- insert (agnt_db_insert): ...`). Flat names
+still resolve server-side there, but they are not listed, so most clients
+will not let you call them.
+
+On grouped servers the `agnt_email_*` tools are
+`agnt_inbox_automation_read` / `_write` / `_delete`, and `data_*` results come
+back as a compact markdown view. Pass `response_format: "json"` for every
+view field as JSON, or `"raw"` for the full upstream payload, when a step
+needs a field the table leaves out.
+
 ## Error triage
 
 - **401 / auth expired**: re-run the client's login step
   (`claude mcp login superagnt` or equivalent). If the client is token-based,
   the user re-reveals the token in the dashboard.
-- **Tool not found**: the family is not enabled. `agnt_tools_search` for it,
-  then `agnt_tools_enable` — free families enable instantly. After enabling,
-  some clients only pick up new tools on reconnect/restart; say so instead of
-  retrying blind.
-- **`requires_upgrade` with a `confirm_url`**: not an error. The family is
-  sold under a named module with a free trial; give the user the link, they
-  review price and trial in the browser, then re-run the enable. Money moves
-  only on that page, never from a tool call.
+- **Tool not found**: first check which surface this server lists (see
+  "Tool names" above). On a grouped server the operation usually lives inside
+  a grouped tool: look for the tool whose description lists it as an action,
+  or run `agnt_tools_search`, whose hits carry `grouped_name` and `action`.
+  Only a family missing under both names is off: enable it with
+  `agnt_tools_enable` (grouped: `agnt_tools_write` with `action: "enable"`);
+  every family enables instantly on every plan. Data sources are always on
+  for a grouped server, so never enable `data:*` there. After enabling, some
+  clients only pick up new tools on reconnect/restart; say so instead of
+  calling enable again.
+- **`requires_upgrade` with a `confirm_url`**: not an error, and the call did
+  not run. The organization hit a plan limit, spent its included or trial
+  data credits, or its trial or plan ended; `reason` says which, and the
+  result names the next plan and what it unlocks. Give the user the link,
+  they review the plan in the browser, then re-run the call. `rate_limited`
+  only means wait `retry_after_seconds`. Money moves only on that page, never
+  from a tool call.
 - **`requires_connection`**: the tool needs the user's own account
   (a vendor integration). The result carries a connect link — hand it over.
 - **Credit errors**: `agnt_credits_balance` for the number;
-  `agnt_usage_recent` for where it went. Top-ups are dashboard actions.
+  `agnt_usage_recent` for where it went. Top-ups are dashboard actions. AI
+  credits (what running agents spend) are a dashboard top-up on the builder
+  plans and during the trial; those plans include data credits only.
 
 ## Finding more
 

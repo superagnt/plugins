@@ -18,6 +18,27 @@ filtering, and rates computed from the returned page's own timestamps.
 `requires_upgrade` → hand the `confirm_url` to the user, wait, re-run.
 (The competitor-mindshare skill endpoint pre-enables these.)
 
+## Tool names on grouped servers
+
+This skill writes flat (per-operation) tool names. New superagnt servers list
+grouped tools instead: one tool per resource with an `action` argument. Flat
+names still resolve there but are not listed, so call the grouped form:
+
+- `data_x_search_get_search_search` → `data_x_discover`, action `search`
+- `agnt_db_insert` → `agnt_db_write`, action `insert`
+- `agnt_db_apply_migration` → `agnt_db_sql`, action `apply_migration`
+- `agnt_canvas_introspect_schema` / `agnt_canvas_preview_query` → `agnt_canvas_read`, action `introspect_schema` / `preview_query`
+- `agnt_canvas_put_widget` / `agnt_canvas_set_layout` / `agnt_canvas_share_create` → `agnt_canvas_write`, action `put_widget` / `set_layout` / `share_create`
+- `agnt_agents_create` → `agnt_agents_write`, action `create`
+- `agnt_schedules_create` → `agnt_schedules_write`, action `create`
+- `agnt_tools_enable` → `agnt_tools_write`, action `enable`
+
+On a grouped server every data source is already on, so skip the `data:*`
+part of Step 0 (enable any other family with `agnt_tools_write`, action
+`enable`). Grouped data calls return a compact markdown view: pass
+`response_format: "json"` for every view field, or `"raw"` for the full
+payload, when a step needs a field the table leaves out.
+
 ## Step 1 — name the brands (first run only)
 
 The user lists brands/products to track (include their own). Record query
@@ -57,9 +78,9 @@ Same pattern as every packaged skill: once one measurement pass has succeeded,
 offer a daily run by building a task agent (recipe: the base `task-agents`
 skill) — `agnt_agents_create` with a system prompt carrying step 2 verbatim
 (brand table, query shape, insert), only the tools it uses, deploy, then
-`agnt_schedules_create` (cadence confirmed; billed runs; module trials via
-`confirm_url` on `requires_upgrade`). Local-only users just re-run the
-skill.
+`agnt_schedules_create` (cadence confirmed; billed runs; a plan limit comes
+back as `requires_upgrade` with a `confirm_url` for the user). Local-only
+users just re-run the skill.
 
 ## Rules
 

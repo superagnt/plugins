@@ -50,12 +50,51 @@ If that fails, say so once and proceed: the steps below stand alone.
 
 ## Step 0 — tools
 
-`agnt_tools_list_enabled`; if missing:
+`agnt_tools_list_enabled`; if missing on a flat server:
 `agnt_tools_enable({ "families": ["data:linkedin", "database"] })` (the
-first-party `data_agnt_*` people/company tools are always on). That is the
-whole first run — **do not enable a sending lane yet.** `requires_upgrade` →
-`confirm_url` to the user → wait → re-run. (The `warm-outbound-engine`
-skill endpoint pre-enables these two.)
+first-party `data_agnt_*` people/company tools are always on). A grouped
+server already serves every data source and the database: nothing to enable.
+That is the whole first run — **do not enable a sending lane yet.**
+`requires_upgrade` → `confirm_url` to the user → wait → re-run. (The
+`warm-outbound-engine` skill endpoint pre-enables these two.)
+
+### Tool names on grouped servers
+
+This skill writes flat (per-operation) names. New servers list grouped tools
+instead: one tool per resource with an `action` argument. Flat names still
+resolve there but are not listed, so most clients will not let you call
+them. The calls this skill makes:
+
+| Flat | Grouped tool, action |
+|---|---|
+| `data_linkedin_search_posts` / `_search_post_by_hashtag` | `data_linkedin_search`: `posts` / `hashtag_posts` |
+| `data_linkedin_get_company_s_post` | `data_linkedin_companies`: `posts` |
+| `data_linkedin_get_profile_s_posts` | `data_linkedin_activity`: `posts` |
+| `data_linkedin_get_post_reactions` | `data_linkedin_posts`: `reactions` |
+| `data_linkedin_get_profile_post_comment` | `data_linkedin_posts`: `comments` |
+| `data_linkedin_get_profile_data_by_url` | `data_linkedin_profiles`: `profile_by_url` |
+| `data_linkedin_get_company_by_domain` | `data_linkedin_companies`: `by_domain` |
+| `data_agnt_companies_enrich` | `data_agnt_companies`: `enrich` |
+| `data_agnt_people_email_finder` / `_email_verifier` | `data_agnt_contacts`: `find_email` / `verify_email` |
+| `agnt_db_select` | `agnt_db_read`: `select` |
+| `agnt_db_insert` / `agnt_db_upsert` | `agnt_db_write`: `insert` / `upsert` |
+| `agnt_db_execute_sql` | `agnt_db_sql`: `execute_sql` |
+| `agnt_tools_enable` | `agnt_tools_write`: `enable` |
+| `agnt_guidance_load` | `agnt_guidance_read`: `load` |
+
+`agnt_tools_list_enabled` and every `connection_*` tool keep their names on
+both surfaces.
+
+**Grouped data calls return a markdown table that drops fields this skill
+keys on.** Pass `response_format: "json"` on every LinkedIn call in steps 3
+and 4: you get every field of the view instead of the default columns. Then
+posts carry `urn` (the comments call takes it) and `url`; reactions carry
+`urn` (the member id for `linkedin_member_urn`) and `url` (the reactor's
+profile); comments carry `author_url` (the commenter's profile) and `url`,
+which is the link to the comment itself, never a lead's profile. For any
+field the view does not carry, such as a post author's profile URL, pass
+`response_format: "raw"`: the full payload, exactly what the flat tool
+returns.
 
 ## Step 1 — the ICP, and the searches it implies (first run only)
 
@@ -107,7 +146,9 @@ is the fastest way to get your outreach posted about.
 Upsert key on `leads` is `linkedin_url` — it is the only identifier that
 survives a job change. LinkedIn also spells the same person as an encoded
 member id (`ACoA…`) in some payloads, so keep `linkedin_member_urn` too and
-dedupe on both.
+dedupe on both. On a grouped server the default markdown view leaves out
+the member id and a commenter's profile URL: request
+`response_format: "json"` (see Step 0).
 
 ## Step 2 — choose this run's sources, then write its searches
 
@@ -183,7 +224,11 @@ not recorded and stays eligible next run.
 3. Skip posts already in `scraped_posts`. Record the rest, with their
    `pond`, as you take them.
 4. `data_linkedin_get_post_reactions` for reactors,
-   `data_linkedin_get_profile_post_comment` for commenters. Record
+   `data_linkedin_get_profile_post_comment` for commenters (grouped:
+   `data_linkedin_posts` actions `reactions` and `comments`, with
+   `response_format: "json"`). Take a reactor's profile from `url` and
+   member id from `urn`; take a commenter's profile from `author_url`, never
+   from the comment's `url`. Record
    `engagement` ('reacted' | 'commented') per lead — commenters convert
    better and are worth a different opener. Keep what they did in
    `engagement_text`: the comment itself for commenters, the reaction type
@@ -194,7 +239,10 @@ not recorded and stays eligible next run.
    a competitor as the author of its own post, and drop the employees of a
    watched company when you pull its engagers.
 6. Drop anyone whose `linkedin_url` or `linkedin_member_urn` is already in
-   `leads`. Dedup at the source, never at send time.
+   `leads`. Dedup at the source, never at send time. A grouped call's
+   default markdown table has no member id, and on comments its `url` is the
+   comment link, so a dedupe against it silently lets duplicates through:
+   fetch the json view first.
 
 **Geography and other filters belong on the enriched profile, not on the
 search payload.** LinkedIn's post-search results omit location for plenty of
@@ -333,14 +381,20 @@ one where the agent can actually hold the thread.
 
 ### Gmail — the user's own mailbox
 
-**This lane is not on the workspace MCP and `agnt_tools_enable` will never
-turn it on.** `connection_gmail_*` exists only inside a *deployed* agent's
-tool config. Wire it at step 7 when the agent is created, as flat `tools`
+**Nothing to enable: a connected mailbox is already on.** Once the user has
+connected Gmail, `connection_gmail_*` is served on the workspace MCP like
+any connected vendor; `agnt_tools_enable` cannot connect it. Not connected
+yet → ask the user to connect Gmail on their superagnt connections page,
+then re-run `agnt_tools_list_enabled`.
+
+`connection_gmail_save_draft` per lead (`to`, `subject`, `body` as HTML)
+puts each first message in the user's Drafts, where they review and send it
+themselves. That is the default. `connection_gmail_send_email` sends for real
+from the user's own address, gated only by their client's tool approval, so
+call it only on an explicit instruction for that run. For the standing
+version (step 7), wire the same ops onto the deployed agent as flat `tools`
 entries: `{ kind: "integration", provider_id: "gmail", operation_id:
-"save_draft" }` and `"send_email"`. `send_email` carries a
-`default_permission` of `always_ask`, so every send surfaces for approval
-unless the user explicitly asks for an override — offer the drafts-only
-shape (`save_draft` alone) first.
+"save_draft" }` and `"send_email"`, where every send surfaces for approval.
 
 **In every lane: stage, do not start.** Add the leads, leave the campaign
 stopped, and report what is waiting. Pressing start is the user's act, and
@@ -361,7 +415,8 @@ generates volume without ever getting warmer.
 
 Deployed agents, schedules and data jobs bill per run: confirm the cadence
 and the expected spend with the user before deploying anything, and hand
-over the `confirm_url` on any `requires_upgrade`.
+over the `confirm_url` on any `requires_upgrade` (a plan limit, spent data
+credits, or a trial that ended).
 
 ## Step 8 — report
 

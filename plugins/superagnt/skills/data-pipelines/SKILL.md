@@ -26,14 +26,16 @@ you fetch).
 
 ## Running the job
 
-1. The job itself (the per-item recipe) is created once — via the dashboard's
+1. The job itself (the per-item recipe) is created once, via the dashboard's
    data-pipelines page or the `data-jobs` management family
-   (`agnt_data_job_create` / `list` / `read` / `inspect_run`). The family is
-   sold under the Data Jobs module (free trial):
-   `agnt_tools_enable(['data-jobs'])`, and on `requires_upgrade` hand the
+   (`agnt_data_job_create` / `list` / `read` / `inspect_run`), on every plan:
+   `agnt_tools_enable({ families: ['data-jobs'] })`. Plans cap active
+   pipelines and items per month; on `requires_upgrade` hand the
    `confirm_url` to the human and wait.
 2. `agnt_data_job_submit` (always available) pushes 1–1000 payloads onto an
-   existing job — each payload a row pointer like `{ "row_id": ... }`.
+   existing job, each payload a row pointer like `{ "row_id": ... }`. A batch
+   that would cross the monthly item cap is refused whole, and the refusal
+   says how many items are left.
 3. **Results must be written back to a workspace table.** Make sure the
    job's recipe upserts each item's output into a table with a `status`
    column — that table is the ONLY place this session, later sessions, task
@@ -51,6 +53,20 @@ hundreds of rows — batch jobs spend credits at batch speed. Sample 5 items
 in-session first to prove the step, then scale. Webhook-fed jobs (one
 delivery = one item, automations skill) inherit the same rule: know the
 expected volume before binding.
+
+## Tool names on grouped servers
+
+This skill writes flat (per-operation) tool names. New superagnt servers list
+grouped tools instead: one tool per resource with an `action` argument. Flat
+names still resolve there but are not listed, so call the grouped form:
+
+- `agnt_data_job_create` / `agnt_data_job_submit` → `agnt_data_job_write`, action `create` / `submit`
+- `agnt_data_job_list` / `agnt_data_job_read` / `agnt_data_job_inspect_run` → `agnt_data_job_lookup`, action `list` / `read` / `inspect_run`
+- `agnt_db_load_csv` → `agnt_db_write`, action `load_csv`
+- `agnt_db_select` → `agnt_db_read`, action `select`
+
+`agnt_tools_enable` is `agnt_tools_write`, action `enable`, on a grouped
+server. `agnt_tools_search` and `agnt_tools_list_enabled` keep their names.
 
 ## More
 

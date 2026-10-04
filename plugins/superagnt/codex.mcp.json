@@ -2,8 +2,8 @@
   "mcpServers": {
     "superagnt": {
       "type": "http",
-      "url": "${SUPERAGNT_MCP_URL:-https://mcp.superagnt.com/mcp}",
-      "headers": {
+      "url": "https://mcp.superagnt.com/mcp",
+      "http_headers": {
         "X-Superagnt-Install": "plugin"
       }
     }

@@ -42,6 +42,23 @@ runs compound instead of starting over.
 - Large lists (500+): move enrichment to a data job (data-pipelines skill)
   instead of looping calls in-session.
 
+## Tool names on grouped servers
+
+This skill writes flat (per-operation) tool names. New superagnt servers list
+grouped tools instead: one tool per resource with an `action` argument. Flat
+names still resolve there but are not listed, so call the grouped form:
+
+- `data_agnt_companies_search` / `data_agnt_companies_discover` / `data_agnt_companies_enrich` → `data_agnt_companies`, action `search` / `discover` / `enrich`
+- `data_agnt_people_search` / `data_agnt_people_enrich` → `data_agnt_people`, action `search` / `enrich`
+- `data_agnt_people_email_finder` / `data_agnt_people_email_verifier` → `data_agnt_contacts`, action `find_email` / `verify_email`
+- `agnt_db_insert` / `agnt_db_upsert` → `agnt_db_write`, action `insert` / `upsert`
+- `agnt_db_select` → `agnt_db_read`, action `select`
+
+`agnt_tools_search` and `agnt_tools_list_enabled` keep their names. Grouped
+data calls return a compact markdown view: pass `response_format: "json"` for
+every view field, or `"raw"` for the full payload, when a step needs a field
+the table leaves out.
+
 ## More
 
 - A standing weekly refresh belongs on a task agent (task-agents skill), not

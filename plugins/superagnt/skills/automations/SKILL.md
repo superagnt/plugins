@@ -28,9 +28,11 @@ system, then read deliveries with `receive_recent` when the session runs.
 `agnt_webhooks_create_endpoint`, `create_outbound`, `list_endpoints`,
 `link_agent`, `link_data_job`, `set_active`, `rotate_secret`,
 `list_deliveries`, `get_delivery`. Enable with
-`agnt_tools_enable(['webhooks'])` — sold under the Automation module (free
-trial); a `requires_upgrade` result carries a `confirm_url` for the human.
-Hand the link over and wait; never treat it as an error.
+`agnt_tools_enable({ families: ['webhooks'] })`; it is on every plan. Plans
+cap inbound events per billing period, and deliveries past the cap are
+refused to the sender. A `requires_upgrade` result (a plan limit, or a trial
+or plan that ended) carries a `confirm_url` for the human. Hand the link over
+and wait; never treat it as an error.
 
 Three patterns, in the order clients usually need them:
 
@@ -53,6 +55,19 @@ Three patterns, in the order clients usually need them:
 
 `agnt_webhooks_list_deliveries` / `get_delivery` show what actually arrived
 and how it was acked. Check there before assuming the upstream never fired.
+
+## Tool names on grouped servers
+
+This skill writes flat (per-operation) tool names. New superagnt servers list
+grouped tools instead: one tool per resource with an `action` argument. Flat
+names still resolve there but are not listed, so call the grouped form:
+
+- `agnt_webhooks_inbound_url` / `agnt_webhooks_receive_recent` / `agnt_webhooks_list_endpoints` / `agnt_webhooks_list_deliveries` / `agnt_webhooks_get_delivery` → `agnt_webhooks_read`, action `inbound_url` / `receive_recent` / `list_endpoints` / `list_deliveries` / `get_delivery`
+- `agnt_webhooks_send` / `agnt_webhooks_create_endpoint` / `agnt_webhooks_create_outbound` / `agnt_webhooks_link_agent` / `agnt_webhooks_link_data_job` → `agnt_webhooks_write`, action `send` / `create_endpoint` / `create_outbound` / `link_agent` / `link_data_job`
+- `agnt_webhooks_set_active` / `agnt_webhooks_rotate_secret` → `agnt_webhooks_admin`, action `set_active` / `rotate_secret`
+
+`agnt_tools_enable` is `agnt_tools_write`, action `enable`, on a grouped
+server. `agnt_tools_search` and `agnt_tools_list_enabled` keep their names.
 
 ## More
 

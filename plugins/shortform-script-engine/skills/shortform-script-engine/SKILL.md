@@ -19,6 +19,25 @@ A `requires_upgrade` result carries a `confirm_url` — give it to the
 user and wait, then re-run. (Connecting through the
 shortform-script-engine skill endpoint pre-enables these.)
 
+## Tool names on grouped servers
+
+This skill writes flat (per-operation) tool names. New superagnt servers list
+grouped tools instead: one tool per resource with an `action` argument. Flat
+names still resolve there but are not listed, so call the grouped form:
+
+- `data_tiktok_search_videos` / `data_tiktok_user_s_videos` / `data_tiktok_video_details` → `data_tiktok_read`, action `search_videos` / `user_videos` / `video`
+- `agnt_db_insert` / `agnt_db_upsert` → `agnt_db_write`, action `insert` / `upsert`
+- `agnt_db_apply_migration` → `agnt_db_sql`, action `apply_migration`
+- `agnt_agents_create` / `agnt_agents_deploy` → `agnt_agents_write`, action `create` / `deploy`
+- `agnt_schedules_create` → `agnt_schedules_write`, action `create`
+- `agnt_tools_enable` → `agnt_tools_write`, action `enable`
+
+On a grouped server every data source is already on, so skip the `data:*`
+part of Step 0 (enable any other family with `agnt_tools_write`, action
+`enable`). Grouped data calls return a compact markdown view: pass
+`response_format: "json"` for every view field, or `"raw"` for the full
+payload, when a step needs a field the table leaves out.
+
 ## Step 1 — define the niche (first run only)
 
 Ask the user for their niche, 3-5 creators they rate, what they sell,
@@ -69,7 +88,7 @@ steps 2–3 verbatim (tables, pattern set, script shape, the CTA), add
 ONLY the tools those steps use, `agnt_agents_deploy`, then
 `agnt_schedules_create` — cadence confirmed with the user first; every
 firing is a billed run. The `lifecycle` and `schedules` families are
-sold under modules with free trials; `requires_upgrade` →
+on every plan, and plans cap agents and schedules; `requires_upgrade` →
 `confirm_url` → wait. If the user prefers local-only, skip this and
 tell them to re-run the skill each week.
 

@@ -3,8 +3,8 @@
 A schedule starts a session on a DEPLOYED agent on a cron cadence and sends
 it a fixed input text. Hosted runtime: fires with the user's machine closed.
 Tools: `agnt_schedules_create` / `list` / `update` / `delete` (the
-`schedules` family, Automation module — `requires_upgrade` → `confirm_url` →
-wait).
+`schedules` family, on every plan). Plans cap enabled schedules: past the
+cap, `requires_upgrade` → `confirm_url` → wait.
 
 ## Creating one
 
@@ -34,7 +34,10 @@ wait).
   double-fire or retry never duplicates output.
 - `agnt_schedules_list` shows the next run; the `observability` family's
   `agnt_observability_list_trigger_runs` shows whether past runs actually
-  fired. Check there before declaring a schedule broken.
+  fired. Check there before declaring a schedule broken. A skipped run with
+  `plan_limit` or `plan_paused` means the plan, not the schedule: the org is
+  over its schedule cap or its trial or plan ended. Nothing is deleted, and
+  firing resumes once the plan covers it.
 
 ## Local alternative
 
