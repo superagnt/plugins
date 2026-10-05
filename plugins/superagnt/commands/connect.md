@@ -13,8 +13,11 @@ Verify the superagnt_ MCP connection end to end and report.
 
    https://claude.ai/customize/connectors/yours?modal=add-custom-connector&connectorName=superagnt&connectorUrl=https%3A%2F%2Fmcp.superagnt.com%2Fmcp&open_in_browser=1
 
-   In the Claude desktop app the tools join this session after your turn
-   ends; in the terminal, the user starts a new session. If the connector
+   The link opens in the browser, and the Claude desktop app only loads
+   connectors when it starts. So in the desktop app, tell the user in the same
+   message: once approved, refresh the app with Cmd+R (Ctrl+R on Windows) or
+   quit and reopen it, then come back to this session; the tools are there on
+   their next message. In the terminal, the user starts a new session. If the connector
    exists but fails on auth, the user reconnects superagnt in claude.ai under
    Customize, Connectors. Claude Code signed in with an API key (check
    `claude auth status`) never loads connectors: fetch

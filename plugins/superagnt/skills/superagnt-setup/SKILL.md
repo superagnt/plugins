@@ -13,8 +13,10 @@ The live setup doc handles every client:
 endpoint is `https://mcp.superagnt.com/mcp`, OAuth-first (the consent screen
 doubles as signup). On Claude the server is a claude.ai connector, not part of
 the plugin: give the user https://claude.ai/customize/connectors/yours?modal=add-custom-connector&connectorName=superagnt&connectorUrl=https%3A%2F%2Fmcp.superagnt.com%2Fmcp&open_in_browser=1
-(claude.ai's Add custom connector dialog, prefilled) and they click Add.
-Tokens, when a client needs one, are revealed on the dashboard's MCP page —
+(claude.ai's Add custom connector dialog, prefilled) and they click Add. It
+opens in the browser, and the Claude desktop app only loads connectors when it
+starts: in the desktop app, tell them to refresh it with Cmd+R (Ctrl+R on
+Windows) or quit and reopen it once they've approved. Tokens, when a client needs one, are revealed on the dashboard's MCP page —
 never invent or reuse one.
 
 ## First call on a fresh connection: `agnt_onboarding`

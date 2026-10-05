@@ -10,7 +10,9 @@ carry the skills that teach the workflows.
 1. Add the superagnt server to Claude as a connector: [open the prefilled
    dialog](https://claude.ai/customize/connectors/yours?modal=add-custom-connector&connectorName=superagnt&connectorUrl=https%3A%2F%2Fmcp.superagnt.com%2Fmcp&open_in_browser=1) and click Add. The consent screen doubles as signup. One
    connector covers claude.ai, the desktop app, mobile, Cowork and Claude Code
-   signed in with your Claude account.
+   signed in with your Claude account. The desktop app only loads connectors
+   when it starts, so refresh it with Cmd+R (Ctrl+R on Windows) or quit and
+   reopen it after you approve.
 2. Install the skills:
 
 ```
