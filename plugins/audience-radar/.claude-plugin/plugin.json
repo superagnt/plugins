@@ -1,7 +1,7 @@
 {
   "name": "audience-radar",
-  "version": "0.3.3",
-  "description": "The Content Ideas Engine skill: an agent that mines X for what your audience talks about on a schedule and writes cited content-idea reports. Skills-only pack — pulls the superagnt base plugin (MCP server + base skills) as a dependency.",
+  "version": "0.3.4",
+  "description": "The Content Ideas Engine skill: an agent that mines X for what your audience talks about on a schedule and writes cited content-idea reports. Skills-only pack: pulls the superagnt base plugin as a dependency. The tools come from the superagnt MCP server, which on Claude you add as a connector.",
   "author": {
     "name": "superagnt",
     "url": "https://superagnt.com"

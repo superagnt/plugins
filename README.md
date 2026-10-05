@@ -1,19 +1,26 @@
 # superagnt_ plugins for Claude Code
 
-One install gives your agent the superagnt_ MCP server — every data source
-(X, TikTok, YouTube, Instagram, Reddit, LinkedIn, web), people + company
-enrichment, a real workspace Postgres, schedules, webhooks and shareable
-canvases — plus the skills that teach the workflows.
+The superagnt_ MCP server gives your agent every data source (X, TikTok,
+YouTube, Instagram, Reddit, LinkedIn, web), people + company enrichment, a real
+workspace Postgres, schedules, webhooks and shareable canvases. These plugins
+carry the skills that teach the workflows.
 
 ## Install
+
+1. Add the superagnt server to Claude as a connector: [open the prefilled
+   dialog](https://claude.ai/customize/connectors/yours?modal=add-custom-connector&connectorName=superagnt&connectorUrl=https%3A%2F%2Fmcp.superagnt.com%2Fmcp&open_in_browser=1) and click Add. The consent screen doubles as signup. One
+   connector covers claude.ai, the desktop app, mobile, Cowork and Claude Code
+   signed in with your Claude account.
+2. Install the skills:
 
 ```
 /plugin marketplace add superagnt/plugins
 /plugin install superagnt@superagnt
 ```
 
-Auth is OAuth on the first tool call; the consent screen doubles as signup.
-No tokens, no config editing, no secrets in this repo.
+No tokens, no config editing, no secrets in this repo. Claude Code signed in
+with an API key doesn't load connectors; use the fallback in
+https://superagnt.com/agent-setup/prompt.md.
 
 ## Skills
 
@@ -33,10 +40,10 @@ anything: https://superagnt.com/skills
 
 ## What's inside
 
-- `plugins/superagnt/` — the MCP server config plus eight base skills
+- `plugins/superagnt/` — eight base skills
   (data-sources, lead-generation, workspace-db, task-agents, automations,
   data-pipelines, canvas, superagnt-setup) and the `/superagnt:connect`
-  command.
+  command (the Codex copy also carries the MCP server config).
 - `plugins/<skill>/` — one skill per packaged workflow. Read any skill before
   installing; they are plain markdown.
 
@@ -50,7 +57,7 @@ deliverable.
 Not on Claude Code? The same setup is one paste in any MCP client:
 
 ```
-Install superagnt for me. It's the superagnt plugin from the github.com/superagnt/plugins marketplace, and it connects the superagnt MCP server (I'll sign in through my browser). The setup guide for each kind of agent is at https://superagnt.com/agent-setup/prompt.md
+Install superagnt for me. It's the superagnt plugin from the github.com/superagnt/plugins marketplace, plus the superagnt MCP server (I'll sign in through my browser). The setup guide for each kind of agent is at https://superagnt.com/agent-setup/prompt.md
 ```
 
 ## About this repo

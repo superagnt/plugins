@@ -11,8 +11,11 @@ version: 0.2.0
 The live setup doc handles every client:
 `https://superagnt.com/agent-setup/prompt.md` — fetch and follow it. The
 endpoint is `https://mcp.superagnt.com/mcp`, OAuth-first (the consent screen
-doubles as signup). Tokens, when a client needs one, are revealed on the
-dashboard's MCP page — never invent or reuse one.
+doubles as signup). On Claude the server is a claude.ai connector, not part of
+the plugin: give the user https://claude.ai/customize/connectors/yours?modal=add-custom-connector&connectorName=superagnt&connectorUrl=https%3A%2F%2Fmcp.superagnt.com%2Fmcp&open_in_browser=1
+(claude.ai's Add custom connector dialog, prefilled) and they click Add.
+Tokens, when a client needs one, are revealed on the dashboard's MCP page —
+never invent or reuse one.
 
 ## First call on a fresh connection: `agnt_onboarding`
 
@@ -53,8 +56,10 @@ needs a field the table leaves out.
 ## Error triage
 
 - **401 / auth expired**: re-run the client's login step
-  (`claude mcp login superagnt` or equivalent). If the client is token-based,
-  the user re-reveals the token in the dashboard.
+  (`claude mcp login superagnt`, `codex mcp login superagnt` or equivalent).
+  For a Claude connector, the user reconnects superagnt in claude.ai under
+  Customize, Connectors. If the client is token-based, the user re-reveals
+  the token in the dashboard.
 - **Tool not found**: first check which surface this server lists (see
   "Tool names" above). On a grouped server the operation usually lives inside
   a grouped tool: look for the tool whose description lists it as an action,

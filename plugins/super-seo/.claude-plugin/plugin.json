@@ -1,7 +1,7 @@
 {
   "name": "super-seo",
-  "version": "0.1.1",
-  "description": "The Super SEO skill: a full SEO operating system. Search Console as ground truth, every candidate action scored on one scale and worked top-down: page drafts, refreshes, on-page fixes, link pitches, indexing and AI-answer visibility, backed by a bundled practitioner-research corpus. Skills-only pack — pulls the superagnt base plugin as a dependency.",
+  "version": "0.1.2",
+  "description": "The Super SEO skill: a full SEO operating system. Search Console as ground truth, every candidate action scored on one scale and worked top-down: page drafts, refreshes, on-page fixes, link pitches, indexing and AI-answer visibility, backed by a bundled practitioner-research corpus. Skills-only pack: pulls the superagnt base plugin as a dependency. The tools come from the superagnt MCP server, which on Claude you add as a connector.",
   "author": {
     "name": "superagnt",
     "url": "https://superagnt.com"
