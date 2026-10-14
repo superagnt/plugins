@@ -30,7 +30,7 @@ HeyReach / Instantly / AgentMail  ──event──▶  inbound endpoint (supera
              re-read thread from the vendor ─▶ match lead ─▶ dedupe on event id
                    classify intent ─▶ write leads + replies ─▶ draft or send answer
                                                    │
-                                     approval card in Slack or the dashboard
+                              approval card in Slack or the superagnt app
 ```
 
 A second, smaller agent is optional: an **acceptance handler** on connection-accepted events that only annotates the row (the campaign keeps sending on its own schedule, so it must not send anything the sequence also sends). Many setups skip it and let the monitor read acceptances live instead.
@@ -90,7 +90,7 @@ Know where this breaks down: an AI reply agent suits simple offers with a clear 
 
 ## Approval, and when to relax it
 
-Every reply and send tool above defaults to `always_ask`: the call stages an approval card and the session ends; on approve the platform sends the exact frozen message and resumes the session with the result. Cards go to the session's bound thread when there is one, otherwise the agent's alert target or default channel, then the workspace's default Slack, then the dashboard's approvals panel. An `always_ask` approval expires after 24 hours and a late approval never sends, so tell the user where the cards will land and how fast they need to act on them.
+Every reply and send tool above defaults to `always_ask`: the call stages an approval card and the session ends; on approve the platform sends the exact frozen message and resumes the session with the result. Cards go to the session's bound thread when there is one, otherwise the agent's alert target or default channel, then the workspace's default Slack, then the approvals panel in the superagnt app. An `always_ask` approval expires after 24 hours and a late approval never sends, so tell the user where the cards will land and how fast they need to act on them.
 
 Relaxing it is the user's decision, made explicitly and narrowly. Permissions are set per tool per agent (`agnt_agents_update_config` with `permissions.tools`), not per reply class: once a lane's send tool is `act`, the only thing keeping the agent to the low-risk classes is its own instructions. So:
 

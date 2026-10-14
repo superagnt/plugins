@@ -56,7 +56,7 @@ most clients will not let you call them: use the grouped tool.
    call returns `requires_upgrade` with a `confirm_url` for the human
    instead of data; never treat that as an error, hand the link over and
    wait. Everything that is not a data call keeps working. On other plans
-   it is a credit error: the human tops up in the dashboard.
+   it is a credit error: the human tops up in the superagnt app.
 
 ## The surfaces
 

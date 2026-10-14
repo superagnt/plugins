@@ -33,7 +33,7 @@ task has run in-session more than twice and will keep recurring.
 5. **Deploy.** `agnt_agents_deploy` flips it live and it starts billing from
    its first session, so confirm with the human before calling. Runs spend
    AI credits, which the builder plans and the trial don't include: the human
-   tops them up in the dashboard.
+   tops them up in the superagnt app.
 6. **Wire the trigger.** An event exists → bind a webhook to the agent
    (automations skill). Purely time-based → create a schedule
    ([schedules.md](schedules.md)). On-demand from another agent or session →

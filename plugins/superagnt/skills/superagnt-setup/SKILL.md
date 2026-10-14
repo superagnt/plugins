@@ -16,24 +16,26 @@ the plugin: give the user https://claude.ai/customize/connectors/yours?modal=add
 (claude.ai's Add custom connector dialog, prefilled) and they click Add. It
 opens in the browser, and the Claude desktop app only loads connectors when it
 starts: in the desktop app, tell them to refresh it with Cmd+R (Ctrl+R on
-Windows) or quit and reopen it once they've approved. Tokens, when a client needs one, are revealed on the dashboard's MCP page —
+Windows) or quit and reopen it once they've approved. Tokens, when a client needs one, are revealed on the MCP page in the superagnt app —
 never invent or reuse one.
 
 ## First call on a fresh connection: `agnt_onboarding`
 
-Once tools respond, call `agnt_onboarding` before anything else. Pass a
-sentence or two about who the user is and what they want from an agent (ask
-them: "tell me a little about yourself and what you'd like automated"), plus
-which client this is. It returns the full platform brief — every surface,
-what it's for, and live links. Then:
+Once tools respond, call `agnt_onboarding` before anything else, with
+`client` (which client this is) and nothing else. It needs nothing from the
+user, so don't ask them questions for it. It returns the full platform brief
+(every surface, what it's for, live links) and, when the user started from a
+skill on superagnt.com, that skill and its first-run prompt in
+`skill_setups`. Then:
 
 - Save what's relevant to this user in your memory (if this client has one),
   so later sessions skip rediscovery.
-- Give the user a short brief of the 3–5 use cases most useful to THEM,
-  drawn from what they told you — not the whole catalog.
+- If `skill_setups` names a skill, offer its first-run prompt. Otherwise give
+  the user a short brief of the 3–5 most useful use cases, not the whole
+  catalog.
 
-For a raw capability map any time later (no intent collection, always
-current): `agnt_platform_map`.
+For a raw capability map any time later (always current):
+`agnt_platform_map`.
 
 ## Tool names: flat and grouped servers
 
@@ -61,7 +63,7 @@ needs a field the table leaves out.
   (`claude mcp login superagnt`, `codex mcp login superagnt` or equivalent).
   For a Claude connector, the user reconnects superagnt in claude.ai under
   Customize, Connectors. If the client is token-based, the user re-reveals
-  the token in the dashboard.
+  the token in the superagnt app.
 - **Tool not found**: first check which surface this server lists (see
   "Tool names" above). On a grouped server the operation usually lives inside
   a grouped tool: look for the tool whose description lists it as an action,
@@ -82,9 +84,9 @@ needs a field the table leaves out.
 - **`requires_connection`**: the tool needs the user's own account
   (a vendor integration). The result carries a connect link — hand it over.
 - **Credit errors**: `agnt_credits_balance` for the number;
-  `agnt_usage_recent` for where it went. Top-ups are dashboard actions. AI
-  credits (what running agents spend) are a dashboard top-up on the builder
-  plans and during the trial; those plans include data credits only.
+  `agnt_usage_recent` for where it went. Top-ups happen in the superagnt
+  app. AI credits (what running agents spend) are topped up there on the
+  builder plans and during the trial; those plans include data credits only.
 
 ## Finding more
 

@@ -26,9 +26,10 @@ you fetch).
 
 ## Running the job
 
-1. The job itself (the per-item recipe) is created once, via the dashboard's
-   data-pipelines page or the `data-jobs` management family
-   (`agnt_data_job_create` / `list` / `read` / `inspect_run`), on every plan:
+1. The job itself (the per-item recipe) is created once, via the
+   data-pipelines page in the superagnt app or the `data-jobs` management
+   family (`agnt_data_job_create` / `list` / `read` / `inspect_run`), on
+   every plan:
    `agnt_tools_enable({ families: ['data-jobs'] })`. Plans cap active
    pipelines and items per month; on `requires_upgrade` hand the
    `confirm_url` to the human and wait.
@@ -40,7 +41,7 @@ you fetch).
    job's recipe upserts each item's output into a table with a `status`
    column — that table is the ONLY place this session, later sessions, task
    agents, and canvases can read outcomes from. A recipe that merely returns
-   its result stores it where only the dashboard can see it.
+   its result stores it where only the superagnt app can show it.
 4. Report progress from the table, not memory: counts by status via
    `agnt_db_select`. Failed items keep their error (`agnt_data_job_inspect_run`
    shows failures and sandbox logs); fix the cause and resubmit the failures,

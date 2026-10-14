@@ -27,7 +27,7 @@ Convert when all of this is true, and say plainly which part isn't:
 - One local run staged leads the user looked at and liked, and the score's closest calls look right to them.
 - The lane is connected and its campaign exists (for HeyReach: built in HeyReach, with a sender and an empty list, per SKILL.md step 6).
 - The do-not-contact list exists (competitors, customers, the user's own staff).
-- The user has agreed a cadence, a per-run cap, and an expected monthly spend. Deployed agents, schedules and data jobs bill per run, and the plan caps how many of each the organization runs: a `requires_upgrade` carries a `confirm_url` for the user. Agent runs spend AI credits, a dashboard top-up the builder plans and the trial do not include.
+- The user has agreed a cadence, a per-run cap, and an expected monthly spend. Deployed agents, schedules and data jobs bill per run, and the plan caps how many of each the organization runs: a `requires_upgrade` carries a `confirm_url` for the user. Agent runs spend AI credits, topped up in the superagnt app; the builder plans and the trial do not include them.
 
 ## The team
 
@@ -82,7 +82,7 @@ Once AI is fixed, data calls dominate: 84% to 92% of the per-lead cost in both p
 - `agnt_data_job_create` with the returned `validated_code_id`, a `tools` allowlist of only what the recipe calls (an object, `{ "tools": [ ...config_refs ] }`, not a bare list), `model: "haiku"`, and conservative `chunk_size` and `concurrency` (production runs use chunks of 5 to 10 at concurrency 3 to 5).
 - The sourcing agent feeds it with `agnt_data_job_submit({ "data_job_id": ..., "payloads": [{ "lead_id": ... }] })`, only for leads that are genuinely new. Backfill existing rows with `agnt_data_job_backfill`.
 - Watch it with `agnt_data_job_read` (the `queue` block shows pending, failed and `stalled`) and `agnt_data_job_inspect_run`. Repair by reading the recipe, editing, dry-running and `agnt_data_job_update`; resubmit the failed items, never the whole batch.
-- The job's own per-item results are visible only in the dashboard. Write every outcome back to the workspace table, because that's the only thing agents, reports and canvases can read.
+- The job's own per-item results are visible only in the superagnt app. Write every outcome back to the workspace table, because that's the only thing agents, reports and canvases can read.
 
 **Recipe rules that the production failures wrote:**
 

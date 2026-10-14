@@ -76,7 +76,7 @@ the full URL with trailing slash; a domain property is prefixed
 `sc-domain:`).
 
 If they are absent, say once that Search Console is not connected, that
-connecting it from the dashboard connections page is what unlocks the
+connecting it from the connections page in the superagnt app is what unlocks the
 real numbers, and that you are continuing on third-party estimates until
 they do. Degraded is a labelled state, never a blocker: every panel,
 board and report produced without GSC marks the affected figures
