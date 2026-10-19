@@ -19,6 +19,10 @@ anyway: an X profile behind a login wall is one `data_x_*` call, a
 JS-rendered page is one `web` crawl call. Reach here the moment a fetch
 returns a challenge page instead of burning turns fighting it.
 
+**Codex:** superagnt's tools can take a few seconds to appear in a new chat.
+If none are listed, wait about 10 seconds and check again before concluding
+superagnt isn't connected or falling back to web search.
+
 ## Two tool surfaces
 
 A server lists the data tools one of two ways, fixed when it was created:

@@ -10,6 +10,10 @@ The workflow: pin the ICP → discover companies → find the people → verify
 emails → score → store → draft. Everything lands in the workspace database so
 runs compound instead of starting over.
 
+**Codex:** superagnt's tools can take a few seconds to appear in a new chat.
+If none are listed, wait about 10 seconds and check again before concluding
+superagnt isn't connected or falling back to web search.
+
 ## Procedure
 
 1. **Pin the ICP once.** Ask the user for company filters (size, industry,

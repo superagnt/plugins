@@ -19,6 +19,15 @@ starts: in the desktop app, tell them to refresh it with Cmd+R (Ctrl+R on
 Windows) or quit and reopen it once they've approved. Tokens, when a client needs one, are revealed on the MCP page in the superagnt app —
 never invent or reuse one.
 
+**Codex: the tools may not be loaded yet.** Codex starts the first turn of a
+new chat before its MCP servers finish connecting, so superagnt's tools can be
+missing for the first few seconds. If you see none (in Codex's code mode,
+nothing named `mcp__superagnt__*` in `ALL_TOOLS`), wait about 10 seconds and
+check again before telling the user superagnt isn't connected or falling back
+to web search. `codex mcp list` showing `superagnt` enabled, with an Auth
+column that doesn't read "Not logged in", means it is connected; "Not logged
+in" means the sign-in never finished (see 401 below).
+
 ## First call on a fresh connection: `agnt_onboarding`
 
 Once tools respond, call `agnt_onboarding` before anything else, with

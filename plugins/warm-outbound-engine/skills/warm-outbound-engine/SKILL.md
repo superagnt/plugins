@@ -1,7 +1,7 @@
 ---
 name: warm-outbound-engine
-description: This skill should be used when the user wants to run the LinkedIn Warm Outbound skill, or asks to "scrape LinkedIn post engagers", "build outbound from people engaging with my market", "find warm leads on LinkedIn", "turn LinkedIn engagement into a sequence", "write outreach from what people commented", "offer each lead a free personalized resource", "auto-reply to LinkedIn or cold email replies", or "put my LinkedIn outbound on autopilot", or wants recurring engagement-sourced prospecting staged into HeyReach, Instantly, AgentMail or their own Gmail. Runs on the superagnt MCP: LinkedIn post + engager data, first-party enrichment, workspace database, and one sending lane of the user's choice, with a research-backed cold outreach library and a hosted agent team for the recurring version. Stages campaigns stopped; starting a sequence is always the human's.
-version: 0.3.0
+description: This skill should be used when the user wants to run the LinkedIn Warm Outbound skill, or asks to "scrape LinkedIn post engagers", "build outbound from people engaging with my market", "find warm leads on LinkedIn", "turn LinkedIn engagement into a sequence", "write outreach from what people commented", "offer each lead a free personalized resource", "auto-reply to LinkedIn or cold email replies", or "put my LinkedIn outbound on autopilot", or wants recurring engagement-sourced prospecting staged into HeyReach, Instantly, AgentMail or their own Gmail. Runs on the superagnt MCP: LinkedIn post + engager data, first-party enrichment, workspace database, and one sending lane of the user's choice, with a research-backed cold outreach library and a recurring version that runs daily or every other day. Stages campaigns stopped; starting a sequence is always the human's.
+version: 0.3.1
 ---
 
 # LinkedIn Warm Outbound
@@ -14,7 +14,8 @@ engagement source, the scoring gate, the first message, and the four sending
 lanes.
 
 The intended arc: run it once end to end in this client, look at what it
-staged, then put it on autopilot as a hosted agent team (step 7).
+staged, then put it on autopilot: the same sweep daily or every other day,
+on this client's own scheduler or a deployed superagnt agent (step 7).
 
 ## The outreach library
 
@@ -36,7 +37,7 @@ and prefer it over generic outreach folklore.
 - `references/webhook-auto-reply.md`: vendor webhooks into a deployed agent
   that classifies replies, logs them, and drafts or sends answers under
   approval.
-- `references/autopilot-agent-team.md`: turning a good local run into a
+- `references/autopilot-agent-team.md`: the deployed version of step 7, a
   recurring agent team on superagnt: the team shape, data jobs for the
   per-lead work, cadence, cost, and how real deployments broke.
 
@@ -49,6 +50,10 @@ SKILL.md)? Fetch the one you need from
 If that fails, say so once and proceed: the steps below stand alone.
 
 ## Step 0 — tools
+
+**Codex:** superagnt's tools can take a few seconds to appear in a new chat.
+If none are listed, wait about 10 seconds and check again before concluding
+superagnt isn't connected or falling back to web search.
 
 `agnt_tools_list_enabled`; if missing on a flat server:
 `agnt_tools_enable({ "families": ["data:linkedin", "database"] })` (the
@@ -81,9 +86,22 @@ them. The calls this skill makes:
 | `agnt_db_execute_sql` | `agnt_db_sql`: `execute_sql` |
 | `agnt_tools_enable` | `agnt_tools_write`: `enable` |
 | `agnt_guidance_load` | `agnt_guidance_read`: `load` |
+| `connection_heyreach_campaign_get_by_id` / `_get_sequence` | `connection_heyreach_campaigns_read`: `get` / `sequence` |
+| `connection_heyreach_list_add_leads_v2` | `connection_heyreach_list_members_write`: `add_leads` |
+| `connection_heyreach_campaign_add_leads_v2` | `connection_heyreach_campaign_leads_write`: `add` |
+| `connection_heyreach_campaign_start` | `connection_heyreach_campaigns_write`: `start` |
+| `connection_instantly_listcampaign` | `connection_instantly_campaigns_read`: `list` |
+| `connection_instantly_bulkaddleads` | `connection_instantly_leads_write`: `add` |
+| `connection_instantly_activatecampaign` | `connection_instantly_campaigns_write`: `activate` |
+| `connection_agentmail_create_inbox` | `connection_agentmail_inboxes_write`: `create` |
+| `connection_agentmail_create_draft` | `connection_agentmail_drafts_write`: `create` |
+| `connection_agentmail_send_draft` / `_reply_to_message` | `connection_agentmail_messages_send`: `send_draft` / `reply` |
+| `connection_agentmail_list_messages` | `connection_agentmail_messages_read`: `list` |
+| `connection_gmail_save_draft` | `connection_gmail_mail_write`: `save_draft` |
+| `connection_gmail_send_email` | `connection_gmail_mail_send`: `send` |
 
-`agnt_tools_list_enabled` and every `connection_*` tool keep their names on
-both surfaces.
+`agnt_tools_list_enabled` keeps its name on both surfaces. `connection_*` tools
+are grouped the same way as the rest; the lane calls are in the table.
 
 **Grouped data calls return a markdown table that drops fields this skill
 keys on.** Pass `response_format: "json"` on every LinkedIn call in steps 3
@@ -403,20 +421,66 @@ it is the last point at which a bad list can still be caught.
 ## Step 7 — put it on autopilot
 
 One batch is not the product. A list built once and never refilled goes
-quiet within weeks — the sequence outruns the leads and the channel looks
+quiet within weeks: the sequence outruns the leads and the channel looks
 dead. Once a run has worked end to end and the user liked what it staged,
-offer the standing version: `references/autopilot-agent-team.md` covers the
-team shape (who does the judgment, what moves into a data job to cut AI
-cost, what webhooks trigger), the cadence, and the ways real deployments of
-this exact motion have broken. The reply side is
-`references/webhook-auto-reply.md`: without it `leads.replied_at` stays
-empty, step 2's steering query has nothing to learn from, and the engine
-generates volume without ever getting warmer.
+offer the standing version: the same sweep (steps 2 to 6), run daily or
+every other day. Smaller, more frequent runs keep the leads fresh (people
+who engaged in the last day or two are the warm ones), keep each run cheap,
+and keep the sending account under its limits.
 
-Deployed agents, schedules and data jobs bill per run: confirm the cadence
-and the expected spend with the user before deploying anything, and hand
-over the `confirm_url` on any `requires_upgrade` (a plan limit, spent data
-credits, or a trial that ended).
+There are two ways to run it. Offer whichever fits the user:
+
+- **This client's own scheduler.** If the client can schedule a recurring
+  task whose runs have the superagnt tools, set the sweep up there. Each
+  run starts with no chat history, which is fine: the ICP, the leads and
+  the search history are in the workspace database, and the run reads them
+  like step 2 does. Write the task so a fresh session can do it alone: run
+  this skill's sweep for the stored ICP, the lane, the per-run cap, stage
+  and never start, then report. Runs use the user's plan for this client;
+  data calls still spend superagnt data credits. A scheduled run starts with
+  nobody signed in, so check two things before promising it: the client can
+  run unattended on this machine (its own sign-in, such as a long-lived token
+  for Claude Code, or an API key or ChatGPT login for Codex), and something
+  will fire it (the client's own scheduler, cron or launchd). Test one
+  unattended run. Every run reads strangers' posts and comments, nobody is
+  there to approve a tool call, and superagnt doesn't gate tools for a
+  client. So give the scheduled run an allowlist in its client permissions,
+  not a deny list: the `agnt_*` and `data_*` tools in the table under
+  Step 0, the lane's read tool, and its one staging call:
+  `connection_heyreach_list_members_write` (HeyReach),
+  `connection_instantly_leads_write` (Instantly) or
+  `connection_gmail_mail_write` (Gmail drafts). Nothing that sends or starts
+  goes on it: not `connection_gmail_mail_send`,
+  `connection_agentmail_messages_send`, `connection_heyreach_inbox_send`,
+  `connection_heyreach_campaigns_write`,
+  `connection_heyreach_campaign_leads_write` (its add can resume a paused
+  campaign), `connection_instantly_emails_send` or
+  `connection_instantly_campaigns_write`, nor their flat names on a
+  per-operation server. The AgentMail lane stays out of this route: an
+  AgentMail draft created with `send_at` sends itself, and no permission
+  stops that, so run it attended or on the deployed agent. In the test run,
+  check the scheduled run's tool list: none of those tools may appear. If the
+  client can't restrict a scheduled run's tools, use the deployed agent. Have each run report into a table
+  or canvas the user reads, not only a log, and have the next attended
+  session check the last run's `searched_at` so a dead schedule gets
+  noticed. If you are not sure the client can schedule, or that its
+  scheduled runs see the superagnt tools, say so and use the other way.
+- **A deployed superagnt agent on a schedule.** For when the client can't
+  schedule, runs must happen with the user's machine off, replies should be
+  answered as they arrive, or the volume calls for splitting the work.
+  `references/autopilot-agent-team.md` covers the team shape (who does the
+  judgment, what moves into a data job to cut AI cost, what webhooks
+  trigger) and the ways real deployments of this exact motion have broken.
+  Agent runs spend AI credits.
+
+The reply side is `references/webhook-auto-reply.md` either way: without it
+`leads.replied_at` stays empty, step 2's steering query has nothing to learn
+from, and the engine generates volume without ever getting warmer.
+
+Confirm the cadence and the expected spend with the user before scheduling
+or deploying anything, and hand over the `confirm_url` on any
+`requires_upgrade` (a plan limit, spent data credits, or a trial that
+ended).
 
 ## Step 8 — report
 

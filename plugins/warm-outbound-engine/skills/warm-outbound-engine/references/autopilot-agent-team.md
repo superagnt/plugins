@@ -7,7 +7,7 @@ type: reference
 
 # Autopilot: from one good run to an agent team
 
-The skill is meant to be run once, end to end, in the user's own client. Once they like what it staged, the next thing they want is for it to keep happening without them. This file is how to get there on superagnt. It is guidance, not a script: the right team depends on the user's volume, their lane, how much of the reply side they want automated, and their budget. Work the decisions out with them.
+The skill is meant to be run once, end to end, in the user's own client. Once they like what it staged, the next thing they want is for it to keep happening without them. If their client can schedule a recurring task with the superagnt tools, that is the simpler route (SKILL.md step 7). This file is the deployed route on superagnt: for when the client can't schedule, runs must happen with the user's machine off, replies should be answered as they arrive, or the volume calls for splitting the work. It is guidance, not a script: the right team depends on the user's volume, their lane, how much of the reply side they want automated, and their budget. Work the decisions out with them.
 
 It is grounded in three real systems running this motion on superagnt, read from their live configuration, run history and costs in September 2026: agnt_'s own LinkedIn outbound, a client deployment that has run it since June, and the managed version of this skill (the hosted "LinkedIn Outbound Scout" agnt_ provisions for customers). All three arrived at the same shape by different routes, and all three broke in instructive ways. Both are below.
 
@@ -94,9 +94,10 @@ Once AI is fixed, data calls dominate: 84% to 92% of the per-lead cost in both p
 
 ## Cadence
 
+- **Run the sweep daily or every other day.** Smaller, more frequent runs keep the leads fresh and each run cheap. Start there and add runs only when the sending side keeps up.
 - **Volume comes from posts per run times engagers per post, not from the clock.** Both production systems land at 35 runs a week with 3 to 5 posts each and see about 35 to 45 new leads per run.
-- **Business-hours weekday schedules with an explicit timezone** (`agnt_schedules_create` takes an IANA `timezone`; a cron written in UTC and labeled as local time drifts an hour twice a year). Several smaller runs a day beat one big sweep, and keep the sending account under its limits. One or two runs a day can use a high-intent mode that ranks posts by engagement.
-- **A creator watchlist refills on a weekly rhythm:** pull the last 7 days of engagement from each watched creator, once a week (Nick Abraham runs his every Sunday).
+- **Business-hours weekday schedules with an explicit timezone** (`agnt_schedules_create` takes an IANA `timezone`; a cron written in UTC and labeled as local time drifts an hour twice a year). At higher volume, several smaller runs a day beat one big sweep, and keep the sending account under its limits. One or two runs a day can use a high-intent mode that ranks posts by engagement.
+- **A creator watchlist refills on the same rhythm:** each run takes the watched creators' most engaged recent posts that aren't in `scraped_posts` yet, inside the run's post cap. Nick Abraham refills his weekly, every Sunday; a daily or every-other-day refill reaches engagers while they are still warm.
 - **Match sourcing to sending.** HeyReach sends at the pace its account limits allow. A list that grows faster than the campaign can send just ages.
 - **Make the first scheduled run wider** so the first report shows real work, then settle into the cap.
 - **Replies are events, not a clock.** Wire them as webhooks.

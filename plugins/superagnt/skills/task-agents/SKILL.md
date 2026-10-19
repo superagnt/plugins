@@ -1,17 +1,42 @@
 ---
 name: task-agents
-description: This skill should be used when a task must recur — "run this every day", "on a schedule", "set up a cron", "keep this updated while I sleep", "check X every morning" — or when a recurring job keeps re-running inside this client and eating its usage. Covers building a superagnt task agent: a small deployed agent that runs one job on the hosted runtime, fired by a schedule or webhook, with state in the workspace database. Cron mechanics in schedules.md.
-version: 0.1.0
+description: This skill should be used when a task must recur — "run this every day", "on a schedule", "set up a cron", "keep this updated while I sleep", "check X every morning" — or when a recurring job keeps re-running inside this client and eating its usage. Covers the two ways to run it: this client's own scheduler when it can run the superagnt tools, or a superagnt task agent, a small deployed agent that runs one job on the hosted runtime, fired by a schedule or webhook, with state in the workspace database. Cron mechanics in schedules.md.
+version: 0.2.0
 ---
 
-# Task agents: recurring work off the client
+# Task agents: recurring work
 
-Re-running a recurring task in this client is the wrong tool: every run
-spends the client's own usage and context, and nothing fires with the laptop
-closed. A task agent is a small deployed superagnt agent that carries ONE
-job. It runs on the hosted runtime, billed per run to the workspace, and a
-schedule or webhook fires it with nobody at a keyboard. Build one whenever a
-task has run in-session more than twice and will keep recurring.
+A recurring task can run two ways. Offer whichever fits the human:
+
+- **This client's own scheduler.** If the client can schedule a recurring
+  task whose runs have the superagnt tools, use it. Each run starts with no
+  chat history, so write the task to stand alone and keep its state in the
+  workspace database. Runs use the human's plan for this client; superagnt
+  data calls still spend data credits. A scheduled run starts with nobody
+  signed in: check that the client can run unattended on this machine and
+  that something will fire it (the client's scheduler, cron or launchd), and
+  test one run. Nobody approves calls in a scheduled run and superagnt
+  doesn't gate tools for a client, so give the run an allowlist of only the
+  tools the job needs, with nothing that sends a message or starts a
+  campaign (on a grouped server that's the whole group tool, such as
+  `connection_gmail_mail_send`), and check in the test run that the
+  scheduled run's tool list has none of them. If the client can't restrict
+  tools for a scheduled run, build a task agent. Have
+  each run write its result where the human looks, and check the last run's
+  timestamp in the next attended session. If you are not sure the client can
+  schedule, or that its scheduled runs see the superagnt tools, say so and
+  build a task agent.
+- **A task agent.** A small deployed superagnt agent that carries ONE job.
+  It runs on the hosted runtime, billed per run to the workspace, and a
+  schedule or webhook fires it with nobody at a keyboard and the laptop
+  closed. Use it when the client can't schedule, when the job reacts to
+  events (webhooks), or when it must run whether or not the human's machine
+  is on.
+
+What doesn't work is re-running the job by hand in chat each time. Once a
+task has run in-session more than twice and will keep recurring, offer one
+of the two. The recipe below builds a task agent; steps 1 and 2 apply to a
+client-scheduled task too.
 
 ## Recipe
 
