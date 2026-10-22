@@ -461,7 +461,7 @@ There are two ways to run it. Offer whichever fits the user:
   stops that, so run it attended or on the deployed agent. In the test run,
   check the scheduled run's tool list: none of those tools may appear. If the
   client can't restrict a scheduled run's tools, use the deployed agent. Have each run report into a table
-  or canvas the user reads, not only a log, and have the next attended
+  or dashboard view the user reads, not only a log, and have the next attended
   session check the last run's `searched_at` so a dead schedule gets
   noticed. If you are not sure the client can schedule, or that its
   scheduled runs see the superagnt tools, say so and use the other way.

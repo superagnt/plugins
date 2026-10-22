@@ -27,7 +27,7 @@ Convert when all of this is true, and say plainly which part isn't:
 - One local run staged leads the user looked at and liked, and the score's closest calls look right to them.
 - The lane is connected and its campaign exists (for HeyReach: built in HeyReach, with a sender and an empty list, per SKILL.md step 6).
 - The do-not-contact list exists (competitors, customers, the user's own staff).
-- The user has agreed a cadence, a per-run cap, and an expected monthly spend. Deployed agents, schedules and data jobs bill per run, and the plan caps how many of each the organization runs: a `requires_upgrade` carries a `confirm_url` for the user. Agent runs spend AI credits, topped up in the superagnt app; the builder plans and the trial do not include them.
+- The user has agreed a cadence, a per-run cap, and an expected monthly spend. Deployed agents, schedules and data jobs bill per run, and the plan caps how many of each the organization runs: a `requires_upgrade` carries a `confirm_url` for the user. Agent runs spend AI credits, topped up in the superagnt app; the builder plans include none, and the trial only a one-time AI credit for hosted agents.
 
 ## The team
 
@@ -37,7 +37,7 @@ Convert when all of this is true, and say plainly which part isn't:
 | **Per-lead work**: fetch, gate, score, look up email, write the message, enroll | A data job fed by the agent (or TypeScript skills, at low volume) | A fixed recipe per lead: one structured model call instead of a session |
 | **Send** | The vendor's campaign (HeyReach, Instantly) | The engine owns delivery: timing, acceptance, reply-stop. Never rebuild it in an agent |
 | **React**: replies, accepts | A webhook into a deployed agent | Reading a thread and deciding what to do is where an agent earns its cost (`webhook-auto-reply.md`) |
-| **Report** | One message per run to a bound channel, plus a canvas | The human reads it where they already are |
+| **Report** | One message per run to a bound channel, plus a dashboard view | The human reads it where they already are |
 
 Two shapes work, and the choice is volume:
 
@@ -82,7 +82,7 @@ Once AI is fixed, data calls dominate: 84% to 92% of the per-lead cost in both p
 - `agnt_data_job_create` with the returned `validated_code_id`, a `tools` allowlist of only what the recipe calls (an object, `{ "tools": [ ...config_refs ] }`, not a bare list), `model: "haiku"`, and conservative `chunk_size` and `concurrency` (production runs use chunks of 5 to 10 at concurrency 3 to 5).
 - The sourcing agent feeds it with `agnt_data_job_submit({ "data_job_id": ..., "payloads": [{ "lead_id": ... }] })`, only for leads that are genuinely new. Backfill existing rows with `agnt_data_job_backfill`.
 - Watch it with `agnt_data_job_read` (the `queue` block shows pending, failed and `stalled`) and `agnt_data_job_inspect_run`. Repair by reading the recipe, editing, dry-running and `agnt_data_job_update`; resubmit the failed items, never the whole batch.
-- The job's own per-item results are visible only in the superagnt app. Write every outcome back to the workspace table, because that's the only thing agents, reports and canvases can read.
+- The job's own per-item results are visible only in the superagnt app. Write every outcome back to the workspace table, because that's the only thing agents, reports and dashboard views can read.
 
 **Recipe rules that the production failures wrote:**
 
@@ -107,7 +107,7 @@ Once AI is fixed, data calls dominate: 84% to 92% of the per-lead cost in both p
 This is the weakest layer in all three production systems, so decide it before the clock starts.
 
 - **One report per run, in a channel the user reads,** with a fixed shape: posts by source, new leads, score distribution, qualified, emails found, staged per lane, and the closest calls when nothing qualified. In two of the three systems the sourcing agent had no channel at all, so its reports lived only in session transcripts nobody opened.
-- **A canvas over the tables** for the standing view: pipeline stats, qualified leads with their rationale, closest calls, leads over time, what's waiting on the user's stack, posts scraped (`agnt_guidance_load({ "name": "canvas-dashboards" })`).
+- **A dashboard view over the tables** for the standing view: pipeline stats, qualified leads with their rationale, closest calls, leads over time, what's waiting on the user's stack, posts scraped (`agnt_dashboards_guide` covers building and publishing one).
 - **Approvals are state, not a convention.** A draft is `staged` and owned by the user until a send API confirms it `sent`. One system logged staged drafts as sent and re-drafted the same leads day after day, at about $1 a run, with zero sends.
 - **Alert on silence.** Page the user when a lane produces nothing for N runs, a trigger is skipped for credits, a downstream gate is parking everything, a vendor key returns 402, or a skill fails to compile. The two longest outages were silent: a broken skill that delivered nothing for three weeks while the schedule fired 35 times a week (it filed the same issue 123 times, each superseding the last), and a downstream quality gate that starved the sender for nearly two weeks while sourcing kept spending.
 - **Give agent-filed config requests an owner.** An open blocking request makes the platform skip that agent's webhook deliveries, and skipped deliveries are not replayed.
@@ -127,7 +127,7 @@ The order that avoids the known failures, with the reason for each:
 - **The data job before the agent that feeds it.** The agent's prompt needs the job's id, and the job must be green on real rows first.
 - **The sourcing agent narrow.** `agnt_agents_create` as a draft with only its own tools and a prompt that is the choosing steps, the report contract and the fail-loud rule; deploy only after the user says so; then `agnt_schedules_create`, created with `enabled: false` until the smoke test passes.
 - **Deploy before subscribing webhooks.** Deliveries to a draft agent fail and deliveries to a disabled one are skipped, and neither is replayed. The reply side is `webhook-auto-reply.md`.
-- **Bind the report channel and build the canvas before the clock starts.**
+- **Bind the report channel and publish the view before the clock starts.**
 - **Smoke test:** one scheduled run and one real reply end to end. Watch the first three runs, then leave it, with the alerts on.
 - **Group the agents as one team** so the user finds them together (`agnt_guidance_load({ "name": "agent-teams" })`).
 
@@ -139,9 +139,9 @@ Staging stays the user's call even here. Whether the team adds leads to a paused
 - `agnt_guidance_load({ "name": "data-pipelines" })`: data job versus sub-agent, the `agnt.ai` helpers, push intake.
 - `agnt_guidance_load({ "name": "typescript-sdk", "section": "ai" })`: the recipe contract.
 - `agnt_guidance_load({ "name": "lead-generation" })`: dedup, the leads table, search-history discipline, the stop rule for repeated failures.
-- `agnt_guidance_load({ "name": "workspace-db-design" })`, `agent-teams`, `canvas-dashboards`.
-- The base skills: `task-agents` (create, deploy, schedule, smoke-test), `automations` (webhooks), `data-pipelines`, `canvas`.
+- `agnt_guidance_load({ "name": "workspace-db-design" })`, `agent-teams`, and `agnt_dashboards_guide` for the view.
+- The base skills: `task-agents` (create, deploy, schedule, smoke-test), `automations` (webhooks), `data-pipelines`, `dashboards`.
 
 ## Sources
 
-Configuration, run history and cost of three production systems on superagnt, read-only, September 2026: agnt_'s own LinkedIn outbound (a scheduled sourcing agent, a qualification data job, a sequencing data job fed by webhook, and a reply agent), a client deployment running the same motion since June 2026 (seven weekday schedules, a scoring data job, persona campaigns in HeyReach, a reply-classifying agent), and the managed "LinkedIn Outbound Scout" (one agent with two TypeScript skills, seven weekday schedules, a canvas and setup tasks). Costs are 30-day figures from platform metering; the before-and-after comparisons use the agent-session eras of the same two systems. Platform guidance: the `data-pipelines`, `linkedin-outreach`, `lead-generation`, `agent-teams` and `typescript-sdk` platform skills. Nick Abraham on the weekly evergreen refill ("How to Scrape LinkedIn Creators for Warm B2B Leads", YouTube `gbdzLWhdmVM`).
+Configuration, run history and cost of three production systems on superagnt, read-only, September 2026: agnt_'s own LinkedIn outbound (a scheduled sourcing agent, a qualification data job, a sequencing data job fed by webhook, and a reply agent), a client deployment running the same motion since June 2026 (seven weekday schedules, a scoring data job, persona campaigns in HeyReach, a reply-classifying agent), and the managed "LinkedIn Outbound Scout" (one agent with two TypeScript skills, seven weekday schedules, a dashboard and setup tasks). Costs are 30-day figures from platform metering; the before-and-after comparisons use the agent-session eras of the same two systems. Platform guidance: the `data-pipelines`, `linkedin-outreach`, `lead-generation`, `agent-teams` and `typescript-sdk` platform skills. Nick Abraham on the weekly evergreen refill ("How to Scrape LinkedIn Creators for Warm B2B Leads", YouTube `gbdzLWhdmVM`).

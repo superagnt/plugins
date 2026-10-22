@@ -1,7 +1,7 @@
 ---
 name: competitor-mindshare
-description: This skill should be used when the user wants to run the Competitor Tracker skill, or asks to "measure competitor mindshare", "track how much people talk about <brand> on X", "compare brand chatter", or wants a recurring share-of-voice measurement with a shareable dashboard. Runs on the superagnt MCP: X search + workspace database + canvas, with an optional daily hosted run.
-version: 0.2.0
+description: This skill should be used when the user wants to run the Competitor Tracker skill, or asks to "measure competitor mindshare", "track how much people talk about <brand> on X", "compare brand chatter", or wants a recurring share-of-voice measurement with a shareable dashboard. Runs on the superagnt MCP: X search + workspace database + the workspace dashboard, with an optional daily hosted run.
+version: 0.3.0
 ---
 
 # Competitor Tracker
@@ -14,9 +14,10 @@ filtering, and rates computed from the returned page's own timestamps.
 ## Step 0 — tools
 
 `agnt_tools_list_enabled`; if missing:
-`agnt_tools_enable({ "families": ["data:x", "database", "canvas_share"] })`.
+`agnt_tools_enable({ "families": ["data:x", "database"] })`.
 `requires_upgrade` → hand the `confirm_url` to the user, wait, re-run.
-(The competitor-mindshare skill endpoint pre-enables these.)
+(The competitor-mindshare skill endpoint pre-enables these. The workspace
+dashboard's tools, `agnt_dashboards_*`, are on for every workspace.)
 
 ## Tool names on grouped servers
 
@@ -27,8 +28,8 @@ names still resolve there but are not listed, so call the grouped form:
 - `data_x_search_get_search_search` → `data_x_discover`, action `search`
 - `agnt_db_insert` → `agnt_db_write`, action `insert`
 - `agnt_db_apply_migration` → `agnt_db_sql`, action `apply_migration`
-- `agnt_canvas_introspect_schema` / `agnt_canvas_preview_query` → `agnt_canvas_read`, action `introspect_schema` / `preview_query`
-- `agnt_canvas_put_widget` / `agnt_canvas_set_layout` / `agnt_canvas_share_create` → `agnt_canvas_write`, action `put_widget` / `set_layout` / `share_create`
+- `agnt_dashboards_guide` / `agnt_dashboards_preview` → `agnt_dashboards_read`, action `guide` / `preview`
+- `agnt_dashboards_write_file` / `agnt_dashboards_publish` → `agnt_dashboards_write`, action `write_file` / `publish`
 - `agnt_agents_create` → `agnt_agents_write`, action `create`
 - `agnt_schedules_create` → `agnt_schedules_write`, action `create`
 - `agnt_tools_enable` → `agnt_tools_write`, action `enable`
@@ -62,15 +63,28 @@ Method caveats to state in any summary: mindshare ≠ market share; gaps under
 ~1.5x are noise; generic brand names (a common word) over-count and need
 tighter variants.
 
-## Step 3 — the dashboard
+## Step 3 — the scoreboard view
 
-First run: `agnt_canvas_introspect_schema` →
-`agnt_canvas_preview_query` (aggregate in SQL, `group by` day and brand) →
-`agnt_canvas_put_widget`: a trend line per brand, a KPI row with today's
-rates, and a table of the latest measurements. `agnt_canvas_set_layout`,
-then — with the user's explicit OK — `agnt_canvas_share_create` for the
-public link. Later runs just insert rows; the canvas stays current on its
-own.
+First run: `agnt_dashboards_guide` once (the files, the query grammar, the
+`sa-*` elements and publishing). Then build one view, `mindshare`, in your
+draft with `agnt_dashboards_write_file` (pass `intent` on the first write):
+
+- `queries/mindshare_today.sql`: today's posts per hour and median likes per
+  brand, highest first.
+- `queries/mindshare_trend.sql`: one row per day, oldest first, one column
+  per brand (pivot in SQL: `max(d.posts_per_hour) filter (where b.brand =
+  'Acme') as acme`).
+- `views/mindshare.html`: an `sa-chart` kind `hbar` over today's rates, an
+  `sa-chart` kind `line` over the trend (`y-fields` the brand columns,
+  `series-labels` the brand names), and an `sa-table` of the latest
+  measurements.
+- the view's entry in `dashboard.json`.
+
+`agnt_dashboards_preview` the view, fix what its report names, then
+`agnt_dashboards_publish`. Later runs just insert rows; the view stays current
+on its own (a new brand needs its column in the trend query, then publish).
+To share the scoreboard, the user turns on the view's public link from the
+superagnt app: agents can't make one.
 
 ## Step 4 — offer the daily run (a task agent)
 

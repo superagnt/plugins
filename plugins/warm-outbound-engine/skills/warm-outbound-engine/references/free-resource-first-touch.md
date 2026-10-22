@@ -73,7 +73,7 @@ This runs inside step 5 of the skill, between the score and staging.
 1. **Only qualified leads.** `status = 'enriched'` rows above the score bar, highest `fit_score` first, capped per run (default 10; the user sets it). Commenters before reactors, because they said something you can build on.
 2. **Research the lead.** `data_linkedin_get_profile_data_by_url`, their recent posts with `data_linkedin_get_profile_s_posts`, the company with `data_agnt_companies_enrich`, their site with `data_web_scrape` (`agnt_tools_enable({ "families": ["data:web"] })` if it is missing), plus the source post and their `engagement_text`. Stop at what the asset needs; this is the expensive part of the run.
 3. **Build it.** Write it to a `lead_assets` row: `lead_id`, `kind`, `title`, `summary` (one line the opener can quote), `body` or `url`, `sources`, `status` (draft, approved, sent, opened, claimed), `built_at`.
-4. **Host it where the user already shares things**: their product, a doc in their workspace, a page on their site. The platform option for data-shaped assets (lists, benchmarks, scorecards) is a canvas whose widgets read that lead's `lead_assets` rows, shared with `agnt_canvas_share_create`. A share link opens for anyone without an account, so get the user's go-ahead for public asset links once, and `agnt_canvas_share_revoke` the link if the lead asks to be left alone.
+4. **Host it where the user already shares things**: their product, a doc in their workspace, a page on their site. A superagnt dashboard view is not a per-lead host: a person in the workspace makes each view's public link by hand, and agents can't make one, so it doesn't scale to one asset per lead.
 5. **Quality gate.** The user reviews the first five assets before any message references them. After that, show one in ten. A bad asset at volume is the fastest way to burn a warm list.
 6. **Write the opener around it** (templates below) and stage it in the chosen lane like every other message. Nothing changes about the stage-never-start rule.
 7. **Deliver on reply.** When the lead answers, send the link in the thread, by hand or through the auto-reply agent in `webhook-auto-reply.md`. Set `lead_assets.status = 'sent'`.
@@ -113,7 +113,7 @@ No pitch in the delivery. The value lands first; the ask comes in the next excha
 - **Qualified leads only.** A disqualified lead never gets an asset, however cheap it would be.
 - **Budget cap per lead.** Stop building when the run's cap is hit and report what's left.
 - **Stage, never start.** An asset doesn't change the skill's hard rules. Links leave only through a staged sequence the user starts or a reply the user has approved (or pre-approved as a template).
-- **Honor a no.** If a lead says no or asks to stop, revoke the share link, mark the row and never message them again.
+- **Honor a no.** If a lead says no or asks to stop, take the asset down where it is hosted, mark the row and never message them again.
 - **Kill it if it doesn't win.** If the asset arm doesn't beat the plain arm after about 100 sends each, stop building assets and put the effort back into targeting.
 
 ## Contested and context-dependent

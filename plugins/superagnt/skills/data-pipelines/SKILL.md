@@ -40,7 +40,7 @@ you fetch).
 3. **Results must be written back to a workspace table.** Make sure the
    job's recipe upserts each item's output into a table with a `status`
    column — that table is the ONLY place this session, later sessions, task
-   agents, and canvases can read outcomes from. A recipe that merely returns
+   agents, and dashboard views can read outcomes from. A recipe that merely returns
    its result stores it where only the superagnt app can show it.
 4. Report progress from the table, not memory: counts by status via
    `agnt_db_select`. Failed items keep their error (`agnt_data_job_inspect_run`
@@ -73,6 +73,6 @@ server. `agnt_tools_search` and `agnt_tools_list_enabled` keep their names.
 
 - Table design for pipelines: the workspace-db skill
 - Feeding a job from an inbound webhook: the automations skill
-- Live platform reference: https://superagnt.com/agent-setup/prompt.md
+- Setup guide, every client: https://www.superagnt.com/install
 
 <!-- skill_id: data-pipelines · source: https://github.com/superagnt/plugins -->

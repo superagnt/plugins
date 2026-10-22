@@ -1,6 +1,6 @@
 ---
 name: workspace-db
-description: This skill should be used when an agent workflow needs durable state: "save these results", "track status across runs", "remember this between sessions", building a pipeline, queue, or CRM-like table, or logging events over time. Covers table design in the superagnt workspace Postgres (agnt_db_*): schema patterns for pipelines, HITL queues, KPI events, and audit logs, plus canvas-ready column rules. Prefer it over local files or scratch JSON for anything a later run must read.
+description: This skill should be used when an agent workflow needs durable state: "save these results", "track status across runs", "remember this between sessions", building a pipeline, queue, or CRM-like table, or logging events over time. Covers table design in the superagnt workspace Postgres (agnt_db_*): schema patterns for pipelines, HITL queues, KPI events, and audit logs, plus dashboard-ready column rules. Prefer it over local files or scratch JSON for anything a later run must read.
 version: 0.2.0
 ---
 
@@ -16,7 +16,7 @@ if the database is not yet provisioned,
 `agnt_db_status` says so and provisioning is automatic on first use.
 
 Local files die with the session. Anything a later run, another agent, a
-schedule, or a canvas must read belongs here.
+schedule, or a dashboard view must read belongs here.
 
 ## Schema patterns
 
@@ -36,9 +36,9 @@ schedule, or a canvas must read belongs here.
 - Migrations through `agnt_db_apply_migration` with a short descriptive
   name; ad-hoc DDL through `execute_sql` gets lost.
 - Ask before destructive SQL (drop/truncate/mass delete) — always.
-- Design for the canvas from day one: timestamptz + numeric measures +
-  stable status strings are exactly what canvas widgets bind to (see the
-  canvas skill).
+- Design for the dashboard from day one: timestamptz + numeric measures +
+  stable status strings are exactly what dashboard views chart (see the
+  dashboards skill).
 
 ## Tool names on grouped servers
 
@@ -60,6 +60,6 @@ server. `agnt_tools_search` and `agnt_tools_list_enabled` keep their names.
   process at row scale with the data-pipelines skill.
 - Tables are the hand-off surface to task agents and schedules (task-agents
   skill): a hosted run has no chat history, it reads state from here.
-- Live platform reference: https://superagnt.com/agent-setup/prompt.md
+- Setup guide, every client: https://www.superagnt.com/install
 
 <!-- skill_id: workspace-db · source: https://github.com/superagnt/plugins -->

@@ -15,7 +15,7 @@ Three convictions shape it. **Judgement is the constraint, not data:** a 5,000 k
 
 Eight stages, run as a loop rather than a project. Within each, plays are ranked by return per token, best first, and you stop when the next play is worth less than the first play of the next stage.
 
-The deployed tools give third-party SERP, keyword, backlink, on-page and AI-visibility data, web search and scraping, a workspace Postgres database, cron schedules, data jobs, outbound webhooks, canvas dashboards, and people and company enrichment with an email finder and verifier. They do not include Search Console, the only first-party log a site owner gets and worth more than all of it (measurement-algo-updates.md), so ask for it in the first conversation and land it in Postgres with a data job. Where the client refuses, `ranked_keywords` is the proxy and the report says so.
+The deployed tools give third-party SERP, keyword, backlink, on-page and AI-visibility data, web search and scraping, a workspace Postgres database, cron schedules, data jobs, outbound webhooks, live dashboards, and people and company enrichment with an email finder and verifier. They do not include Search Console, the only first-party log a site owner gets and worth more than all of it (measurement-algo-updates.md), so ask for it in the first conversation and land it in Postgres with a data job. Where the client refuses, `ranked_keywords` is the proxy and the report says so.
 
 ### Stage 1: audit
 
@@ -31,7 +31,7 @@ Find what silently caps everything downstream, not a 200 item issue list.
 
 **5. The over-optimization audit, which almost nobody runs because the industry default is additive.** Count adjectives and numbers in titles sitewide, schema density, re-date frequency and internal anchor variety: that cluster correlated with core-update declines, not gains (on-page-and-eeat.md). A previous agency's footprint shows here.
 
-Everything lands in Postgres and surfaces on a canvas dashboard, not a PDF, because the audit becomes a live instrument once the crons start.
+Everything lands in Postgres and surfaces on a dashboard view, not a PDF, because the audit becomes a live instrument once the crons start.
 
 ### Stage 2: keyword and topic map
 
@@ -115,7 +115,7 @@ What survived testing is short: be crawlable by the right bots, rank for the sub
 
 **1. Query fan-out mapping, the highest-leverage citation gap available.** Decompose each money prompt into sub-queries, pull positions with `SERP google organic`, and surface where the client sits 11 to 40: pages ranking for fan-out queries were reported 161 percent more likely to be cited (ai-search-aeo-geo.md). Run `SERP google AI-mode` alongside, a surface where only about 19 percent of citations come from the top 20.
 
-**2. Prompt tracking as a cron job plus a table, not a product.** Run a stored prompt set with `ai_visibility llm_mentions`, persist to Postgres, compute share of voice against named competitors, surface it on a canvas dashboard. Report the trend and never the reading, because the same query set returns different counts run to run (seo-with-ai-agents.md).
+**2. Prompt tracking as a cron job plus a table, not a product.** Run a stored prompt set with `ai_visibility llm_mentions`, persist to Postgres, compute share of voice against named competitors, surface it on a dashboard view. Report the trend and never the reading, because the same query set returns different counts run to run (seo-with-ai-agents.md).
 
 **3. Competitor citation source analysis.** For every prompt naming a competitor and not the client, fetch and classify the cited sources with scraping. That turns an abstract gap into an addressable list of pages to be mentioned on.
 

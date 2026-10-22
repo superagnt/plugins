@@ -20,8 +20,8 @@ Verify the superagnt_ MCP connection end to end and report.
    their next message. In the terminal, the user starts a new session. If the connector
    exists but fails on auth, the user reconnects superagnt in claude.ai under
    Customize, Connectors. Claude Code signed in with an API key (check
-   `claude auth status`) never loads connectors: fetch
-   https://superagnt.com/agent-setup/prompt.md and use its fallback.
+   `claude auth status`) never loads connectors: use the fallback in the
+   setup guide, https://www.superagnt.com/install.
 3. Report: tool count, the enabled family labels, and the credit balance
    (`agnt_credits_balance`). Then suggest the single most relevant next step
    given what the user has been working on, nothing more.

@@ -57,8 +57,9 @@ client-scheduled task too.
    every tool is a liability, not a convenience.
 5. **Deploy.** `agnt_agents_deploy` flips it live and it starts billing from
    its first session, so confirm with the human before calling. Runs spend
-   AI credits, which the builder plans and the trial don't include: the human
-   tops them up in the superagnt app.
+   AI credits. The builder plans include none and the trial a one-time AI
+   credit for hosted agents: past that, the human tops them up in the
+   superagnt app.
 6. **Wire the trigger.** An event exists → bind a webhook to the agent
    (automations skill). Purely time-based → create a schedule
    ([schedules.md](schedules.md)). On-demand from another agent or session →
@@ -71,8 +72,8 @@ client-scheduled task too.
 
 ## Keeping it honest
 
-- Results land where the human already looks: a canvas (canvas skill), or a
-  table the next session reads — never only in the agent's own transcript.
+- Results land where the human already looks: a dashboard view (dashboards
+  skill), or a table the next session reads — never only in the agent's own transcript.
 - One job per agent. A second job is a second agent; they can hand off via
   `agnt_agents_dispatch` or agent-to-agent webhooks.
 - Misbehaving agent: `agnt_agents_set_enabled(false)` stops triggers
@@ -97,6 +98,6 @@ server. `agnt_tools_search` and `agnt_tools_list_enabled` keep their names.
 
 - Cron syntax, cadence discipline, timezones: [schedules.md](schedules.md)
 - Event triggers instead of clocks: the automations skill
-- Live platform reference: https://superagnt.com/agent-setup/prompt.md
+- Setup guide, every client: https://www.superagnt.com/install
 
 <!-- skill_id: task-agents · source: https://github.com/superagnt/plugins -->

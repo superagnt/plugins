@@ -2,7 +2,7 @@
 
 The superagnt_ MCP server gives your agent every data source (X, TikTok,
 YouTube, Instagram, Reddit, LinkedIn, web), people + company enrichment, a real
-workspace Postgres, schedules, webhooks and shareable canvases. These plugins
+workspace Postgres, schedules, webhooks and shareable dashboards. These plugins
 carry the skills that teach the workflows.
 
 ## Install
@@ -21,8 +21,8 @@ carry the skills that teach the workflows.
 ```
 
 No tokens, no config editing, no secrets in this repo. Claude Code signed in
-with an API key doesn't load connectors; use the fallback in
-https://superagnt.com/agent-setup/prompt.md.
+with an API key doesn't load connectors; use the fallback in the setup guide,
+https://www.superagnt.com/install.
 
 ## Skills
 
@@ -44,7 +44,7 @@ anything: https://superagnt.com/skills
 
 - `plugins/superagnt/` — eight base skills
   (data-sources, lead-generation, workspace-db, task-agents, automations,
-  data-pipelines, canvas, superagnt-setup) and the `/superagnt:connect`
+  data-pipelines, dashboards, superagnt-setup) and the `/superagnt:connect`
   command (the Codex copy also carries the MCP server config).
 - `plugins/<skill>/` — one skill per packaged workflow. Read any skill before
   installing; they are plain markdown.
@@ -56,11 +56,9 @@ deliverable.
 
 ## Other harnesses
 
-Not on Claude Code? The same setup is one paste in any MCP client:
-
-```
-Install superagnt for me. It's the superagnt plugin from the github.com/superagnt/plugins marketplace, plus the superagnt MCP server (I'll sign in through my browser). The setup guide for each kind of agent is at https://superagnt.com/agent-setup/prompt.md
-```
+Not on Claude Code? The same setup is one paste in any MCP client. Open
+https://www.superagnt.com/install, copy the line it shows, and paste it into
+your agent.
 
 ## About this repo
 

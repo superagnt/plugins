@@ -8,10 +8,10 @@ version: 0.2.0
 
 ## Connecting / reconnecting
 
-The live setup doc handles every client:
-`https://superagnt.com/agent-setup/prompt.md` — fetch and follow it. The
-endpoint is `https://mcp.superagnt.com/mcp`, OAuth-first (the consent screen
-doubles as signup). On Claude the server is a claude.ai connector, not part of
+The setup guide has the steps for every client, one section each:
+`https://www.superagnt.com/install`. The endpoint is
+`https://mcp.superagnt.com/mcp`, OAuth-first (the consent screen doubles as
+signup). On Claude the server is a claude.ai connector, not part of
 the plugin: give the user https://claude.ai/customize/connectors/yours?modal=add-custom-connector&connectorName=superagnt&connectorUrl=https%3A%2F%2Fmcp.superagnt.com%2Fmcp&open_in_browser=1
 (claude.ai's Add custom connector dialog, prefilled) and they click Add. It
 opens in the browser, and the Claude desktop app only loads connectors when it
@@ -95,7 +95,8 @@ needs a field the table leaves out.
 - **Credit errors**: `agnt_credits_balance` for the number;
   `agnt_usage_recent` for where it went. Top-ups happen in the superagnt
   app. AI credits (what running agents spend) are topped up there on the
-  builder plans and during the trial; those plans include data credits only.
+  builder plans and during the trial; the plans include data credits only,
+  and the trial adds a one-time AI credit for hosted agents.
 
 ## Finding more
 

@@ -72,7 +72,7 @@ server. `agnt_tools_search` and `agnt_tools_list_enabled` keep their names.
 ## More
 
 - Schedules (cron) moved to the task-agents skill — see its `schedules.md`.
-- Live setup + endpoint reference: https://superagnt.com/agent-setup/prompt.md
+- Setup guide, every client: https://www.superagnt.com/install
 - Packaged event-driven workflows: https://superagnt.com/skills
 
 <!-- skill_id: automations · source: https://github.com/superagnt/plugins -->
