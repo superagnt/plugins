@@ -5,7 +5,7 @@
     "name": "superagnt",
     "url": "https://superagnt.com"
   },
-  "description": "superagnt_, the agent value layer. The base plugin carries the base skill set for the superagnt MCP server (data sources, workspace Postgres, schedules, dashboards); on Claude the server itself is added as a connector. Skill plugins add packaged workflows on top.",
+  "description": "superagnt, the agent value layer. The base plugin carries the base skill set for the superagnt MCP server (data sources, workspace Postgres, schedules, dashboards); on Claude the server itself is added as a connector. Skill plugins add packaged workflows on top.",
   "plugins": [
     {
       "name": "superagnt",

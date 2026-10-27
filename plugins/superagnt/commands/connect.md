@@ -2,7 +2,7 @@
 description: Verify the superagnt MCP connection, add the Claude connector if it is missing, and show what this workspace can do
 ---
 
-Verify the superagnt_ MCP connection end to end and report.
+Verify the superagnt MCP connection end to end and report.
 
 1. Call `agnt_tools_list_enabled`. If it succeeds, the connection works:
    skip to step 3.

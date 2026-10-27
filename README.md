@@ -1,6 +1,6 @@
-# superagnt_ plugins for Claude Code
+# superagnt plugins for Claude Code
 
-The superagnt_ MCP server gives your agent every data source (X, TikTok,
+The superagnt MCP server gives your agent every data source (X, TikTok,
 YouTube, Instagram, Reddit, LinkedIn, web), people + company enrichment, a real
 workspace Postgres, schedules, webhooks and shareable dashboards. These plugins
 carry the skills that teach the workflows.
