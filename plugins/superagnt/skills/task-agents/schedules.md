@@ -12,8 +12,9 @@ cap, `requires_upgrade` → `confirm_url` → wait.
 
 - `agent_id` — from `agnt_agents_list`. The agent must be deployed.
 - `cron_expression` — standard 5-field cron (minute hour dom month dow).
-  Minute resolution is the finest allowed; `* * * * *` is rejected. Unsure
-  about an expression? https://crontab.guru reads them back in English.
+  Every minute (`* * * * *`) is the finest cadence; a 6-field expression with
+  seconds is rejected. Unsure about an expression? https://crontab.guru reads
+  them back in English.
 - `timezone` — IANA name (`Europe/Berlin`); defaults to UTC. Set it to the
   user's zone whenever the cadence is phrased in local time ("every morning").
 - `input_text` — the message each firing sends. The run has NO other
