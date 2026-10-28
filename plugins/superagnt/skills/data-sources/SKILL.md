@@ -1,6 +1,6 @@
 ---
 name: data-sources
-description: This skill should be used when the agent needs external data: searching or scraping X/Twitter, TikTok, YouTube, Instagram, Reddit, Facebook, or LinkedIn; running web or SERP searches; crawling pages; enriching a person or company; or finding and verifying emails. Also whenever normal fetching is blocked: bot detection, login walls, crawl prevention. Covers the superagnt data tools that return structured results in one call, instead of hand-rolled scraping or headless browsing.
+description: "This skill should be used when the agent needs external data: searching or scraping X/Twitter, TikTok, YouTube, Instagram, Reddit, Facebook, or LinkedIn; running web or SERP searches; crawling pages; enriching a person or company; or finding and verifying emails. Also whenever normal fetching is blocked: bot detection, login walls, crawl prevention. Covers the superagnt data tools that return structured results in one call, instead of hand-rolled scraping or headless browsing."
 version: 0.2.0
 ---
 

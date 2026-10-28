@@ -1,6 +1,6 @@
 ---
 name: task-agents
-description: This skill should be used when a task must recur — "run this every day", "on a schedule", "set up a cron", "keep this updated while I sleep", "check X every morning" — or when a recurring job keeps re-running inside this client and eating its usage. Covers the two ways to run it: this client's own scheduler when it can run the superagnt tools, or a superagnt task agent, a small deployed agent that runs one job on the hosted runtime, fired by a schedule or webhook, with state in the workspace database. Cron mechanics in schedules.md.
+description: "This skill should be used when a task must recur (\"run this every day\", \"on a schedule\", \"set up a cron\", \"keep this updated while I sleep\", \"check X every morning\") or when a recurring job keeps re-running inside this client and eating its usage. Covers the two ways to run it: this client's own scheduler when it can run the superagnt tools, or a superagnt task agent, a small deployed agent that runs one job on the hosted runtime, fired by a schedule or webhook, with state in the workspace database. Cron mechanics in schedules.md."
 version: 0.2.0
 ---
 

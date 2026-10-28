@@ -1,12 +1,12 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
   "name": "com.superagnt/reddit-data",
-  "description": "Reddit data for AI agents: posts, comments, subreddits, search. Community + sentiment research.",
+  "description": "superagnt: marketing plugin for Claude and ChatGPT. Know your market: Reddit threads and subreddits.",
   "repository": {
     "url": "https://github.com/superagnt/plugins",
     "source": "github"
   },
-  "version": "0.1.0",
+  "version": "0.2.0",
   "websiteUrl": "https://superagnt.com/r/reg-reddit-data-docs",
   "remotes": [
     {

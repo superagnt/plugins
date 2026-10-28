@@ -1,6 +1,6 @@
 ---
 name: newsletter-autopilot
-description: This skill should be used when the user wants to run the Newsletter Autopilot skill, or asks to "research and draft my newsletter", "assemble this week's issue", "keep a research pile for my newsletter and write the draft", or wants a standing weekly loop that ends in a complete cited issue draft. Runs on the superagnt MCP: X + web data and the workspace database, with an optional nightly hosted run.
+description: "This skill should be used when the user wants to run the Newsletter Autopilot skill, or asks to \"research and draft my newsletter\", \"assemble this week's issue\", \"keep a research pile for my newsletter and write the draft\", or wants a standing weekly loop that ends in a complete cited issue draft. Runs on the superagnt MCP: X + web data and the workspace database, with an optional nightly hosted run."
 version: 0.1.0
 ---
 

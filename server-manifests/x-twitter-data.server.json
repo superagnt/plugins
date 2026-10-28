@@ -1,12 +1,12 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
   "name": "com.superagnt/x-twitter-data",
-  "description": "X (Twitter) data for AI agents: tweets, profiles, followers, search, trends + social listening.",
+  "description": "superagnt: marketing plugin for Claude and ChatGPT. Know your market: tweets and followers on X.",
   "repository": {
     "url": "https://github.com/superagnt/plugins",
     "source": "github"
   },
-  "version": "0.1.0",
+  "version": "0.2.0",
   "websiteUrl": "https://superagnt.com/r/reg-x-twitter-data-docs",
   "remotes": [
     {

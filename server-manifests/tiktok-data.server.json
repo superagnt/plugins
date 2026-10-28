@@ -1,12 +1,12 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
   "name": "com.superagnt/tiktok-data",
-  "description": "TikTok data for AI agents: videos, creators, sounds, hashtags, trends. Content + creator research.",
+  "description": "superagnt: marketing plugin for Claude and ChatGPT. Know your market: TikTok videos and creators.",
   "repository": {
     "url": "https://github.com/superagnt/plugins",
     "source": "github"
   },
-  "version": "0.1.0",
+  "version": "0.2.0",
   "websiteUrl": "https://superagnt.com/r/reg-tiktok-data-docs",
   "remotes": [
     {

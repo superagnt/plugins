@@ -1,6 +1,6 @@
 ---
 name: gtm-prospecting-desk
-description: This skill should be used when the user wants to run the Outbound Pipeline Engine skill, or asks to "build my prospecting pipeline", "run my outbound research", "keep a prospect table current", or wants recurring ICP-filtered company and people discovery with scored rows and outreach drafts. Runs on the superagnt MCP: first-party people/company data + LinkedIn + workspace database. Drafts only — sending is always the human's.
+description: "This skill should be used when the user wants to run the Outbound Pipeline Engine skill, or asks to \"build my prospecting pipeline\", \"run my outbound research\", \"keep a prospect table current\", or wants recurring ICP-filtered company and people discovery with scored rows and outreach drafts. Runs on the superagnt MCP: first-party people/company data + LinkedIn + workspace database. Drafts only: sending is always the human's."
 version: 0.2.0
 ---
 

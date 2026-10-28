@@ -1,5 +1,5 @@
 {
   "name": "agency-outbound",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The Agency Outbound skill: outbound for every company you run it for, one superagnt workspace each. An agent pulls the people reacting to and commenting on competitors' LinkedIn company pages and the hashtags their buyers follow, enriches them, keeps the ones who fit and stages them in that workspace's own HeyReach, Instantly, Smartlead, lemlist or other connected sequencer, stopped until you start it. Replies and meetings sync back into the workspace's database, and the agent builds a dashboard view you share by link. Skills-only pack: pulls the superagnt base plugin as a dependency. The tools come from the superagnt MCP server, which on Claude you add as a connector."
 }

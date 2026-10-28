@@ -1,6 +1,6 @@
 ---
 name: data-pipelines
-description: This skill should be used for data-processing jobs over many rows — "process this CSV", "enrich every row", "classify these 5,000 records", "run AI on each item", "scrape all of these URLs" — AI and non-AI alike, whenever the row count outgrows one context window. Covers superagnt data jobs: server-side batch processing over workspace-database rows with per-item status, retries, and cost control, instead of looping tool calls in-session.
+description: "This skill should be used for data-processing jobs over many rows (\"process this CSV\", \"enrich every row\", \"classify these 5,000 records\", \"run AI on each item\", \"scrape all of these URLs\"), AI and non-AI alike, whenever the row count outgrows one context window. Covers superagnt data jobs: server-side batch processing over workspace-database rows with per-item status, retries, and cost control, instead of looping tool calls in-session."
 version: 0.2.0
 ---
 

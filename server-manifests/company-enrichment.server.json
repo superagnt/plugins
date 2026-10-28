@@ -1,12 +1,12 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
   "name": "com.superagnt/company-enrichment",
-  "description": "Company enrichment for AI agents: firmographics, tech stack, headcount, funding, domain emails.",
+  "description": "superagnt: marketing plugin for Claude and ChatGPT. Find your customers: company size and funding.",
   "repository": {
     "url": "https://github.com/superagnt/plugins",
     "source": "github"
   },
-  "version": "0.1.0",
+  "version": "0.2.0",
   "websiteUrl": "https://superagnt.com/r/reg-company-enrichment-docs",
   "remotes": [
     {

@@ -1,12 +1,12 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
   "name": "com.superagnt/facebook-data",
-  "description": "Facebook data for AI agents: pages, posts, groups. Brand, market + competitor research JSON.",
+  "description": "superagnt: marketing plugin for Claude and ChatGPT. Know your market: competitor ads on Facebook.",
   "repository": {
     "url": "https://github.com/superagnt/plugins",
     "source": "github"
   },
-  "version": "0.1.0",
+  "version": "0.2.0",
   "websiteUrl": "https://superagnt.com/r/reg-facebook-data-docs",
   "remotes": [
     {

@@ -1,6 +1,6 @@
 ---
 name: lead-generation
-description: This skill should be used when the user asks to "find leads", "build a lead list", "prospect", "find companies that…", "find people who…", "enrich these leads", or "find emails for this list", or wants an ICP-filtered outreach list. Covers the full superagnt workflow: company and people discovery, enrichment, scoring, storing results in the workspace database, and drafting outreach for human review. Sending is always human-approved.
+description: "This skill should be used when the user asks to \"find leads\", \"build a lead list\", \"prospect\", \"find companies that…\", \"find people who…\", \"enrich these leads\", or \"find emails for this list\", or wants an ICP-filtered outreach list. Covers the full superagnt workflow: company and people discovery, enrichment, scoring, storing results in the workspace database, and drafting outreach for human review. Sending is always human-approved."
 version: 0.2.0
 ---
 

@@ -1,12 +1,12 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
   "name": "com.superagnt/seo-data",
-  "description": "SEO data for AI agents: Google SERP, keyword research, backlinks, site audits, AI answer visibility.",
+  "description": "superagnt: marketing plugin for Claude and ChatGPT. Rank in search: Google rankings and keywords.",
   "repository": {
     "url": "https://github.com/superagnt/plugins",
     "source": "github"
   },
-  "version": "0.1.0",
+  "version": "0.2.0",
   "websiteUrl": "https://superagnt.com/r/reg-seo-data-docs",
   "remotes": [
     {

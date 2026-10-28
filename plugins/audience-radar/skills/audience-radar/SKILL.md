@@ -1,6 +1,6 @@
 ---
 name: audience-radar
-description: This skill should be used when the user wants to run the Content Ideas Engine skill, or asks to "find out what my audience talks about", "mine X for content ideas", "research what's working in my niche on X/Twitter", or wants a recurring content-research sweep with a cited ideas report. Runs on the superagnt MCP: X search + workspace database, with an optional nightly hosted run.
+description: "This skill should be used when the user wants to run the Content Ideas Engine skill, or asks to \"find out what my audience talks about\", \"mine X for content ideas\", \"research what's working in my niche on X/Twitter\", or wants a recurring content-research sweep with a cited ideas report. Runs on the superagnt MCP: X search + workspace database, with an optional nightly hosted run."
 version: 0.2.0
 ---
 

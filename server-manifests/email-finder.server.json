@@ -1,12 +1,12 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
   "name": "com.superagnt/email-finder",
-  "description": "Email finder + verifier for AI agents: find work emails by name and company, check deliverability.",
+  "description": "superagnt: marketing plugin for Claude and ChatGPT. Find your customers: email finder and verifier.",
   "repository": {
     "url": "https://github.com/superagnt/plugins",
     "source": "github"
   },
-  "version": "0.1.0",
+  "version": "0.2.0",
   "websiteUrl": "https://superagnt.com/r/reg-email-finder-docs",
   "remotes": [
     {

@@ -1,6 +1,6 @@
 ---
 name: automations
-description: This skill should be used when work should be triggered by an event: "when X happens, do Y", "when a form is submitted", "when Stripe/GitHub fires a webhook", "notify my system when this finishes", or wiring superagnt to Zapier, Make, or any backend. Covers superagnt inbound and outbound webhooks — receiving events that trigger hosted work, sending signed results out, and inspecting deliveries. For cron-style recurring runs, use the task-agents skill.
+description: "This skill should be used when work should be triggered by an event: \"when X happens, do Y\", \"when a form is submitted\", \"when Stripe/GitHub fires a webhook\", \"notify my system when this finishes\", or wiring superagnt to Zapier, Make, or any backend. Covers superagnt inbound and outbound webhooks: receiving events that trigger hosted work, sending signed results out, and inspecting deliveries. For cron-style recurring runs, use the task-agents skill."
 version: 0.2.0
 ---
 

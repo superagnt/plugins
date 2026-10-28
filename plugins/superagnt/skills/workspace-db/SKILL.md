@@ -1,6 +1,6 @@
 ---
 name: workspace-db
-description: This skill should be used when an agent workflow needs durable state: "save these results", "track status across runs", "remember this between sessions", building a pipeline, queue, or CRM-like table, or logging events over time. Covers table design in the superagnt workspace Postgres (agnt_db_*): schema patterns for pipelines, HITL queues, KPI events, and audit logs, plus dashboard-ready column rules. Prefer it over local files or scratch JSON for anything a later run must read.
+description: "This skill should be used when an agent workflow needs durable state: \"save these results\", \"track status across runs\", \"remember this between sessions\", building a pipeline, queue, or CRM-like table, or logging events over time. Covers table design in the superagnt workspace Postgres (agnt_db_*): schema patterns for pipelines, HITL queues, KPI events, and audit logs, plus dashboard-ready column rules. Prefer it over local files or scratch JSON for anything a later run must read."
 version: 0.2.0
 ---
 

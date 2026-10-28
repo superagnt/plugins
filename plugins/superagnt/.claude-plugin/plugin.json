@@ -1,8 +1,8 @@
 {
   "name": "superagnt",
   "displayName": "superagnt",
-  "version": "0.6.2",
-  "description": "The agent value layer: every data source (X, TikTok, YouTube, Instagram, Reddit, LinkedIn, web), people + company enrichment, a real workspace Postgres, schedules, webhooks and shareable dashboards over the superagnt MCP server, plus the base skills that teach the workflows. On Claude, add the server as a connector at https://mcp.superagnt.com/mcp. Sign-in happens in your browser; the consent screen doubles as signup.",
+  "version": "0.6.3",
+  "description": "superagnt is a marketing plugin for Claude and ChatGPT that helps businesses find customers through outbound, SEO and ads. This base plugin carries the skills for its MCP server: live data from X, TikTok, YouTube, Instagram, Reddit, LinkedIn and the web, people and company data, a real workspace Postgres, schedules, webhooks and shareable dashboards. On Claude, add the server as a connector at https://mcp.superagnt.com/mcp. Sign-in happens in your browser; the consent screen doubles as signup.",
   "author": {
     "name": "superagnt",
     "url": "https://superagnt.com"

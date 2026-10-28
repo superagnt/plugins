@@ -5,7 +5,7 @@
     "name": "superagnt",
     "url": "https://superagnt.com"
   },
-  "description": "superagnt, the agent value layer. The base plugin carries the base skill set for the superagnt MCP server (data sources, workspace Postgres, schedules, dashboards); on Claude the server itself is added as a connector. Skill plugins add packaged workflows on top.",
+  "description": "superagnt is a marketing plugin for Claude and ChatGPT that helps businesses find customers through outbound, SEO and ads. These are its Claude skills and plugins for marketing, with the live data they need. The base plugin carries the base skills for the superagnt MCP server (on Claude the server itself is added as a connector), and each skill plugin adds one marketing workflow on top.",
   "plugins": [
     {
       "name": "superagnt",
@@ -75,7 +75,7 @@
     {
       "name": "video-multiplier",
       "source": "./plugins/video-multiplier",
-      "description": "The Video Multiplier skill: an agent that turns one YouTube upload into the full package — chapters, title options, description, and a week of post drafts built from the transcript. Skills-only pack: pulls the superagnt base plugin as a dependency. The tools come from the superagnt MCP server, which on Claude you add as a connector.",
+      "description": "The Video Multiplier skill: an agent that turns one YouTube upload into the full package: chapters, title options, description, and a week of post drafts built from the transcript. Skills-only pack: pulls the superagnt base plugin as a dependency. The tools come from the superagnt MCP server, which on Claude you add as a connector.",
       "category": "productivity",
       "keywords": [
         "skill",

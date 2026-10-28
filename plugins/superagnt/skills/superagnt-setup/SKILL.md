@@ -1,6 +1,6 @@
 ---
 name: superagnt-setup
-description: This skill should be used when a superagnt MCP call fails (401/403, tool not found, missing connection, credit, plan limit or trial errors), when connecting or reconnecting the superagnt server, right after a fresh connection (run onboarding first), or when the user asks "what can superagnt do", about pricing or trials, or how to add tools or skills. Covers agnt_onboarding, agnt_platform_map, agnt_tools_search/enable, and the human-confirmed upgrade flow. Money never moves without a human tap on a confirmation link.
+description: "This skill should be used when a superagnt MCP call fails (401/403, tool not found, missing connection, credit, plan limit or trial errors), when connecting or reconnecting the superagnt server, right after a fresh connection (run onboarding first), or when the user asks \"what can superagnt do\", about pricing or trials, or how to add tools or skills. Covers agnt_onboarding, agnt_platform_map, agnt_tools_search/enable, and the human-confirmed upgrade flow. Money never moves without a human tap on a confirmation link."
 version: 0.2.0
 ---
 

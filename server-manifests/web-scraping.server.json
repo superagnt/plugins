@@ -1,12 +1,12 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
   "name": "com.superagnt/web-scraping",
-  "description": "Web scraping for AI agents: scrape, search, crawl, map any website to markdown + JSON. No browser.",
+  "description": "superagnt: marketing plugin for Claude and ChatGPT. Know your market: scrape and search the web.",
   "repository": {
     "url": "https://github.com/superagnt/plugins",
     "source": "github"
   },
-  "version": "0.1.0",
+  "version": "0.2.0",
   "websiteUrl": "https://superagnt.com/r/reg-web-scraping-docs",
   "remotes": [
     {

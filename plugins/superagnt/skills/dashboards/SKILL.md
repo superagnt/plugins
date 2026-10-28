@@ -1,6 +1,6 @@
 ---
 name: dashboards
-description: This skill should be used when the user asks for a "dashboard", "shareable report", "KPI page", or "live chart", or wants results as a page someone else can open. Covers the superagnt workspace dashboard: views (HTML pages on sa-* elements) bound to named queries over the workspace database and platform data, the draft-and-publish loop, and public links. Use after data lands in the workspace database; see workspace-db for table design.
+description: "This skill should be used when the user asks for a \"dashboard\", \"shareable report\", \"KPI page\", or \"live chart\", or wants results as a page someone else can open. Covers the superagnt workspace dashboard: views (HTML pages on sa-* elements) bound to named queries over the workspace database and platform data, the draft-and-publish loop, and public links. Use after data lands in the workspace database; see workspace-db for table design."
 version: 0.3.0
 ---
 

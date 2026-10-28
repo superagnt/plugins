@@ -1,6 +1,6 @@
 ---
 name: competitor-mindshare
-description: This skill should be used when the user wants to run the Competitor Tracker skill, or asks to "measure competitor mindshare", "track how much people talk about <brand> on X", "compare brand chatter", or wants a recurring share-of-voice measurement with a shareable dashboard. Runs on the superagnt MCP: X search + workspace database + the workspace dashboard, with an optional daily hosted run.
+description: "This skill should be used when the user wants to run the Competitor Tracker skill, or asks to \"measure competitor mindshare\", \"track how much people talk about <brand> on X\", \"compare brand chatter\", or wants a recurring share-of-voice measurement with a shareable dashboard. Runs on the superagnt MCP: X search + workspace database + the workspace dashboard, with an optional daily hosted run."
 version: 0.3.0
 ---
 
