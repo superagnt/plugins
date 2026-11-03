@@ -1,7 +1,7 @@
 ---
 name: agency-outbound
 description: "This skill should be used when the user wants to run the Agency Outbound skill, or asks to \"pull the people engaging with a competitor's LinkedIn posts\", \"build a list from a LinkedIn hashtag\", \"enrich these engagers and keep the ones who fit\", \"push the leads into my HeyReach, Instantly, Smartlead or lemlist campaign\", \"how are this workspace's campaigns doing\", or \"build a dashboard I can share\", for outbound run in one superagnt workspace per company. Runs on the superagnt MCP: LinkedIn post and engager data, first-party enrichment, the workspace database, the sequencer connected in this workspace, its synced results and the workspace dashboard. One workspace per chat, named before every write. Leads are staged; starting a campaign is always the human's."
-version: 0.1.0
+version: 0.1.1
 ---
 
 # Agency Outbound
@@ -328,6 +328,30 @@ call, so give it an allowlist: this skill's reads and its one staging call,
 and nothing that starts, activates or resumes a campaign or sends a message.
 Confirm the cadence and the expected data spend with the person before
 scheduling anything.
+
+## Account safety and deliverability
+
+Every workspace sends from its own accounts, so one client's mistake is
+that client's restriction. Check these before the first push into a
+workspace, and say which one a request would break:
+
+- **LinkedIn senders:** about 200 connection requests a week per account
+  is the ceiling, and an account that hasn't been sending gets locked if it
+  suddenly sends 100 or more. Ramp a new sender slowly and leave the daily
+  numbers to the sequencer's per-account limits. Withdraw pending requests
+  after about 10 days.
+- **Never** rented or "avatar" profiles, stacked or resold Sales Navigator
+  seats, or tools that get around LinkedIn's caps. A restriction costs the
+  client their network.
+- **Email:** only rows with `email_verified = true` go into an email
+  campaign. The first email carries no link, no emojis and no word "free",
+  and stays short: 35 to 80 words.
+- **Every follow-up adds something new**, never "just bumping this", and any
+  reply stops the sequence.
+
+These are the `warm-outbound-engine` skill's outreach playbook rules,
+distilled from practitioners' videos and posts and our own production
+outbound; that file has the sources.
 
 ## Hard rules
 

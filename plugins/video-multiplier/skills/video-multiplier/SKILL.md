@@ -1,14 +1,16 @@
 ---
 name: video-multiplier
 description: "This skill should be used when the user wants to run the Video Multiplier skill, or asks to \"package my YouTube upload\", \"write chapters and a description for this video\", \"turn this video into posts\", \"repurpose my video into a thread / shorts / newsletter\", or wants every new upload to come back as a full content package. Runs on the superagnt MCP: YouTube data + workspace database, with an optional per-upload hosted run."
-version: 0.1.0
+version: 0.1.1
 ---
 
 # Video Multiplier
 
-Turn one YouTube upload into the full package: chapters, title options,
-description, and a week of post drafts built from the transcript. One
-video becomes seven pieces. Publishing stays with the user.
+Turn one YouTube upload into the full package: chapters, five title
+options and the description, then up to six post drafts built from the
+transcript (an X thread, a LinkedIn post, a newsletter section and two or
+three short-form scripts). It writes text and never cuts clips. Publishing
+stays with the user.
 
 ## Step 0 — tools
 
@@ -68,9 +70,30 @@ Save on `multiplier_packages` (`agnt_db_upsert`) and show it ready to
 paste. No subtitles → say so and stop; never package from the title
 alone.
 
-## Step 3 — draft the derivative week
+Rank the five titles by the pattern each one uses, and show the rank. In
+superagnt's study of 1,412 long-form videos from 15 AI and builder channels
+(pulled 2026-09-30; a hit is 3x the channel's own median views, 13% of all
+videos), the share of videos with each title pattern that hit:
 
-From the same transcript, draft the week for the channels the user
+| Pattern in the title | Videos | Hit 3x or more |
+|---|---|---|
+| "full course" or "(N hours)" | 38 | 45% |
+| "clearly explained" or "explained" | 33 | 27% |
+| A number list ("5 ways", "13 tools") | 59 | 27% |
+| "learn X%" or "in N minutes" | 117 | 25% |
+| Beginner, no code or 101 | 65 | 20% |
+| Names "agent" | 196 | 16% |
+| A money claim | 274 | 12% |
+| "I" or "my" | 348 | 11% |
+| A question mark | 55 | 2% |
+
+A pattern earns a title only when the video delivers it: "full course"
+for a course, "clearly explained" for an explainer. The buckets overlap
+and several are small, so treat the rank as a tiebreaker, not a rule.
+
+## Step 3 — draft the posts
+
+From the same transcript, draft the posts for the channels the user
 named: an X thread built on the strongest sequence, 2-3 short-form
 scripts each anchored on one moment (hook, beats, CTA), a LinkedIn
 post, a newsletter section. Every draft quotes or paraphrases the

@@ -1,4 +1,4 @@
-# Video Multiplier: a Claude skill for turning one YouTube video into a week of content, by superagnt
+# Video Multiplier: a Claude skill for repurposing a YouTube video into social posts, by superagnt
 
 superagnt is a marketing plugin for Claude and ChatGPT that helps businesses find customers through outbound, SEO and ads.
 Video Multiplier is one of its skills, and it runs on live data out of the box in

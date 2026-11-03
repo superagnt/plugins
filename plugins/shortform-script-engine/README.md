@@ -1,4 +1,4 @@
-# Hook Lab: a Claude skill for short-form video scripts, by superagnt
+# Hook Lab: a Claude skill for TikTok scripts built on the hooks that win, by superagnt
 
 superagnt is a marketing plugin for Claude and ChatGPT that helps businesses find customers through outbound, SEO and ads.
 Hook Lab is one of its skills, and it runs on live data out of the box in
