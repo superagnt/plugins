@@ -1,0 +1,19 @@
+{
+  "name": "competitor-ad-research",
+  "version": "0.1.1",
+  "description": "The Competitor Ad Research skill: your competitors' running Facebook and Instagram ads, pulled from the Meta Ad Library and grouped by offer, angle and format, with each landing page's offer and price and what each offer's keywords cost per click, all kept in your workspace database. Read only: it never touches an ad account. Skills-only pack: pulls the superagnt base plugin as a dependency. The tools come from the superagnt MCP server, which on Claude you add as a connector.",
+  "author": {
+    "name": "superagnt",
+    "url": "https://superagnt.com"
+  },
+  "homepage": "https://superagnt.com/skills/competitor-ad-research",
+  "repository": "https://github.com/superagnt/plugins",
+  "license": "MIT",
+  "keywords": [
+    "skill",
+    "superagnt"
+  ],
+  "dependencies": [
+    "superagnt"
+  ]
+}

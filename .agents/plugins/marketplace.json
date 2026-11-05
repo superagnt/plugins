@@ -47,6 +47,15 @@
       ]
     },
     {
+      "name": "competitor-ad-research",
+      "source": "./plugins/competitor-ad-research",
+      "description": "The Competitor Ad Research skill: your competitors' running Facebook and Instagram ads, pulled from the Meta Ad Library and grouped by offer, angle and format, with each landing page's offer and price and what each offer's keywords cost per click, all kept in your workspace database. Read only: it never touches an ad account. Skills-only pack: pulls the superagnt base plugin as a dependency. The tools come from the superagnt MCP server, which on Claude you add as a connector.",
+      "keywords": [
+        "skill",
+        "superagnt"
+      ]
+    },
+    {
       "name": "gtm-prospecting-desk",
       "source": "./plugins/gtm-prospecting-desk",
       "description": "The Outbound Pipeline Engine skill: ICP-filtered company and people discovery, verified emails, scored rows and outreach drafts in one compounding pipeline table. Skills-only pack: pulls the superagnt base plugin as a dependency. The tools come from the superagnt MCP server, which on Claude you add as a connector.",
