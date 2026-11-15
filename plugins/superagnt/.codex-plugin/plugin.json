@@ -1,6 +1,6 @@
 {
   "name": "superagnt",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "superagnt is a marketing plugin for Claude and ChatGPT that helps businesses find customers through outbound, SEO and ads. This base plugin carries the skills for its MCP server: live data from X, TikTok, YouTube, Instagram, Reddit, LinkedIn and the web, people and company data, a real workspace Postgres, schedules, webhooks and shareable dashboards. On Claude, add the server as a connector at https://mcp.superagnt.com/mcp. Sign-in happens in your browser; the consent screen doubles as signup.",
   "mcpServers": "./codex.mcp.json"
 }

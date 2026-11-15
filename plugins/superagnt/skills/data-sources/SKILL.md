@@ -93,6 +93,17 @@ most clients will not let you call them: use the grouped tool.
 - Results worth keeping belong in the workspace database (see the
   workspace-db skill), not in chat scrollback.
 
+## From code: the REST API
+
+A script, cron job or backend that pulls this data on its own (no AI in the
+loop, or thousands of calls) should call the REST API rather than loop tool
+calls here: `https://api.superagnt.com/v1/data/<source>/<endpoint>`, one HTTP
+request per call, the same data and credits. `GET /v1/platforms` lists the
+sources, and `GET /v1/platforms/<source>` one source's endpoints. It takes a
+workspace API key the user creates on the API Keys page of the superagnt app,
+sent as `Authorization: Bearer <key>`; the MCP token doesn't work there. The
+superagnt-setup skill has the details.
+
 ## More
 
 - Every source, with live tool lists: `agnt_platform_map`, or

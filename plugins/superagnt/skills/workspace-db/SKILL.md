@@ -60,6 +60,11 @@ server. `agnt_tools_search` and `agnt_tools_list_enabled` keep their names.
   process at row scale with the data-pipelines skill.
 - Tables are the hand-off surface to task agents and schedules (task-agents
   skill): a hosted run has no chat history, it reads state from here.
+- The user's own code (a backend, a script, a cron job) reaches the same
+  database over REST: `/v1/db/...` at `https://api.superagnt.com` (tables,
+  rows, SQL, vector search, storage), one HTTP request per call with no AI in
+  the loop, using a workspace API key the user creates on the API Keys page
+  of the superagnt app (superagnt-setup skill).
 - Setup guide, every client: https://www.superagnt.com/install
 
 <!-- skill_id: workspace-db · source: https://github.com/superagnt/plugins -->

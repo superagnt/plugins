@@ -98,6 +98,37 @@ needs a field the table leaves out.
   builder plans and during the trial; the plans include data credits only,
   and the trial adds a one-time AI credit for hosted agents.
 
+## REST API or MCP
+
+The same workspace also answers a REST API at `https://api.superagnt.com/v1`,
+reached with a workspace API key instead of this connection. Same data, same
+credits, same plan limits.
+
+- **REST beats MCP when no AI needs to be in the loop:** a script, a cron job,
+  a backend, or a bulk job over thousands of rows. Each call is one HTTP
+  request with no model turn, easy to retry and run in parallel, and it runs
+  where this client can't (a server, CI, a scheduled job). Write that code
+  against REST rather than looping tool calls here.
+- **MCP stays the way to work here:** exploring, deciding what to call,
+  reading results, and building and running agents.
+- **On REST:** data sources (`/v1/data/<source>/...`), people and company
+  data (`/v1/data/agnt/people/...`, `/v1/data/agnt/companies/...`), the
+  workspace database (`/v1/db/...`), connected vendors
+  (`/v1/connections/<vendor>/...`), inbound and outbound webhook endpoints
+  (`/v1/webhook-endpoints`, `/v1/outbound-webhook-endpoints`), credits
+  (`/v1/credits`) and usage (`/v1/usage`). `GET /v1/platforms` lists the data
+  sources, and `GET /v1/platforms/<source>` one source's endpoints. **MCP
+  only:** agents, schedules, queues, data jobs, knowledge bases, memory,
+  dashboards and vendor syncs.
+- **The key:** the user creates one on the API Keys page of the superagnt app
+  (open the workspace, then API Keys, New Key). It is shown once and reaches
+  only that workspace. Send it as `Authorization: Bearer <key>`; this
+  connection's MCP token is refused on REST. Have the code read it from an
+  environment variable (such as `SUPERAGNT_API_KEY`), and never ask the user
+  to paste it into the chat.
+- Reference: https://www.superagnt.com/docs/authentication, and the API pages
+  under https://www.superagnt.com/docs.
+
 ## Finding more
 
 - `agnt_platform_map` — the whole platform in one call, with live links.

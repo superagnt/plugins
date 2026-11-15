@@ -44,7 +44,12 @@ superagnt isn't connected or falling back to web search.
 - Verified-email counts and list sizes reported to the user must come from
   the table (`agnt_db_select count`), not memory.
 - Large lists (500+): move enrichment to a data job (data-pipelines skill)
-  instead of looping calls in-session.
+  instead of looping calls in-session. When the user's own code runs the
+  pipeline (a script, a cron job, their backend), it calls the REST API
+  instead: `/v1/data/agnt/people/...` and `/v1/data/agnt/companies/...` at
+  `https://api.superagnt.com`, one HTTP request per call with no AI in the
+  loop, using a workspace API key the user creates on the API Keys page of
+  the superagnt app (superagnt-setup skill).
 
 ## Tool names on grouped servers
 
