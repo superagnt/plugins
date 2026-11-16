@@ -1,0 +1,19 @@
+{
+  "name": "linkedin-post-radar",
+  "version": "0.1.1",
+  "description": "The LinkedIn Post Radar skill: reads the last 30 days of top LinkedIn posts in your market, measures which post types and formats win and whether each winner won on its format or its author's audience, and writes five posts in the winning shapes. Skills-only pack: pulls the superagnt base plugin as a dependency. The tools come from the superagnt MCP server, which on Claude you add as a connector.",
+  "author": {
+    "name": "superagnt",
+    "url": "https://superagnt.com"
+  },
+  "homepage": "https://superagnt.com/skills/linkedin-post-radar",
+  "repository": "https://github.com/superagnt/plugins",
+  "license": "MIT",
+  "keywords": [
+    "skill",
+    "superagnt"
+  ],
+  "dependencies": [
+    "superagnt"
+  ]
+}
